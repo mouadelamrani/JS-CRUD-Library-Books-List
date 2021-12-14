@@ -1,0 +1,17 @@
+html, body, *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.inputSec{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+input{
+    width: 100%;
+    height: 40px;
+    margin: 5px;
+}
