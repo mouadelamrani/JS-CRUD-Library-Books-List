@@ -12,51 +12,79 @@
 </head>
 <body>
     <section class="container">
-        <form>
-                <input type="text" placeholder="Author">
+        <form id="myForm">
+                <!-- Author -->
+                <label id="authorLbl" for="Author">Author
+                    <span id="authorMissed" class="errorMsg"></span>
+                    <input id="author" type="text" placeholder="Author" >
+                </label>
+
+                <!-- Book Copytype -->
+                <label id="copyTypeLbl" for="copyType">Book Copytype
+                    <span id="copyTypeMissed" class="errorMsg"></span>
+                    <select id="copyType" name="copyType">
+                        <option value="" disabled selected>Select your copytype</option>
+                        <option value="Hardcover">Hardcover</option>
+                        <option value="Softcover">Softcover</option>
+                    </select>
+                </label>
+
+                <!-- Publisher -->
+                <label id="publisherLbl" for="Publisher">Publisher
+                    <span id="publisherMissed" class="errorMsg"></span>
+                    <input id="publisher" type="text" placeholder="Publisher">
+                </label>
+
+                <!-- Languages -->
+                <label for="languages">languages
+                    <div id="LanguagesContainer">
+                        <label id="langLabel" for="arabic">
+                            <input type="radio" value="Arabic" name="languages">
+                            <span>Arabic</span>
+                        </label>
+                        <label id="langLabel" for="English">
+                            <input type="radio" value="English" name="languages">
+                            <span>English</span>
+                        </label>
+                        <label id="langLabel" for="French">
+                            <input type="radio" value="French" name="languages">
+                            <span>French</span>
+                        </label>
+                        <label id="langLabel" for="Spanish">
+                            <input type="radio" value="Spanish" name="languages">
+                            <span>Spanish</span>
+                        </label>
+                    </div>
+                </label>
                 
-                <select name="copyType">
-                    <option value="Hardcover">Hardcover</option>
-                    <option value="Softcover">Softcover</option>
-                </select>
+                <!-- Number of pages -->
+                <label for="nPages">Number of Pages
+                    <input id="nPages" type="text" placeholder="Number of Pages">
+                </label>
 
-                <input type="text" placeholder="Publisher">
+                <!-- Genre -->
+                <label for="Genre">Genre
+                    <select id="genre" name="Genre">
+                        <option value="" disabled selected>Select the book genre</option>
+                        <option value="Action">Action</option>
+                        <option value="Classics">Classics</option>
+                        <option value="Detective">Detective</option>
+                        <option value="Psychology">Psychology</option>
+                        <option value="Fantasy">Fantasy</option>
+                    </select>
+                </label>
+                
+                <!-- Price -->
+                <label for="Price">Price
+                    <input id="price" type="number" placeholder="Price">
+                </label>
 
-                <div class="checkboxContainer">
-                    <label for="arabic">
-                        <input type="radio" id="Arabic" value="Arabic">
-                        <span>Arabic</span>
-                    </label>
-                    <label for="English">
-                        <input type="radio" id="English" value="English">
-                        <span>English</span>
-                    </label>
-                    <label for="French">
-                        <input type="radio" id="French" value="French">
-                        <span>French</span>
-                    </label>
-                    <label for="Spanish">
-                        <input type="radio" id="Spanish" value="Spanish">
-                        <span>Spanish</span>
-                    </label>
-                </div>
-
-                <input type="text" placeholder="Number of Pages">            
-
-                <select name="Genre">
-                    <option value="" disabled selected>Select the book genre</option>
-                    <option value="Action">Action</option>
-                    <option value="Classics">Classics</option>
-                    <option value="Detective">Detective</option>
-                    <option value="Psychology">Psychology</option>
-                    <option value="Fantasy">Fantasy</option>
-                  </select>
-
-                <input type="number" placeholder="Price">
-
-                <input type="date" name="publishing date">
+                <!-- Publishing Date -->
+                <label for="pubDate">Publishing Date
+                    <input id="pubDate" type="date" name="publishing date">
+                </label>
         </form>
-        <button type="submit">
+        <button type="button" onclick="libraryManager()">
             SUBMIT
         </button>
     </section>
