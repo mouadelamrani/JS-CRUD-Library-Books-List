@@ -1,10 +1,20 @@
 function libraryManager(){
     validation();
+    myform.reset();
+
 }
 
 
+// =============== Reset Form ===============
+function resetForm(){
+    const myform = document.getElementById("myForm");
+    myform.reset();
+    location.reload();
+}
+// =============== Reset Form ===============
 
-// ===============VALIDATION===============
+
+// =============== VALIDATION ===============
     function validation(){
         const form = document.getElementById("myForm");
 
@@ -77,8 +87,8 @@ function libraryManager(){
         if (document.querySelector('input[name="languages"]:checked')) {
             LanguagesMissed.innerText = "";
             languagesLbl.style.color = "green";
-            // publisher.style.border = "solid green";
-            // publisher.style.backgroundColor = "#f5fff5";
+            LanguagesContainer.style.border = "solid green";
+            LanguagesContainer.style.backgroundColor = "#f5fff5";
         }else{
             LanguagesMissed.innerText = "is not defined";
             LanguagesMissed.style.color = "red";
@@ -168,5 +178,5 @@ function libraryManager(){
 
 
     }
-// ===============VALIDATION===============
+// =============== VALIDATION ===============
 
