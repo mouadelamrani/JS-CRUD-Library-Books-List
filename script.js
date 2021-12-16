@@ -5,11 +5,53 @@ function libraryManager(){
 }
 
 
+// =============== Get Data ===============
+function getData(){
+    var inputData = {};
+    inputData["authorData"] = document.getElementById("author").value;
+    inputData["copyTypeData"] = document.getElementById("copyType").value;
+    inputData["publisherData"] = document.getElementById("publisher").value;
+    inputData["languagesData"] = document.querySelector('input[name="languages"]:checked').value;
+    inputData["nPagesData"] = document.getElementById("nPages").value;
+    inputData["genreData"] = document.getElementById("genre").value;
+    inputData["priceData"] = document.getElementById("price").value;
+    inputData["pubDateData"] = document.getElementById("pubDate").value;
+
+    return inputData;
+}
+// =============== Get Data ===============
+
+
+// =============== Data in the Table ===============
+function dataTableFun(data){
+    var dataTable = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+    var newRow = dataTable.insertRow(table.length);
+    var AuthorCell = newRow.insertCell(0);
+        AuthorCell.innerText = data.authorData;
+    var copyTypeCell = newRow.insertCell(1);
+        copyTypeCell.innerText = data.copyTypeData;
+    var publisherCell = newRow.insertCell(1);
+        publisherCell.innerText = data.publisherData;
+    var languagesCell = newRow.insertCell(1);
+        languagesCell.innerText = data.languagesData;
+    var nPagesCell = newRow.insertCell(1);
+        nPagesCell.innerText = data.nPagesData;
+    var genreCell = newRow.insertCell(1);
+        genreCell.innerText = data.genreData;
+    var priceCell = newRow.insertCell(1);
+        priceCell.innerText = data.priceData;
+    var pubDateCell = newRow.insertCell(1);
+        pubDateCell.innerText = data.pubDateData;
+}
+// =============== Data in the Table ===============
+
+
+
 // =============== Reset Form ===============
 function resetForm(){
     const myform = document.getElementById("myForm");
     myform.reset();
-    location.reload();
+    // location.reload();
 }
 // =============== Reset Form ===============
 
