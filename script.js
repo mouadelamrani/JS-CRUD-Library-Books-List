@@ -1,9 +1,19 @@
 function libraryManager(){
     validation();
     event.preventDefault();
-    getData();
-    fillDataTable();
+
+    var formData = getData()
     // myform.reset();
+
+    if(selectedRow === null){
+        // insertNewRecord();
+        fillDataTable(formData);
+    }
+    else{
+        // updateRecord(formData);
+        updateData(formData);
+    }
+    resetForm();
 
 
 
@@ -13,16 +23,16 @@ function libraryManager(){
 // =============== Get Data ===============
 function getData(){
     var inputData = {};
-    inputData["authorData"] = document.getElementById("author").value;
-    inputData["copyTypeData"] = document.getElementById("copyType").value;
+    inputData["authorData"]    = document.getElementById("author").value;
+    inputData["copyTypeData"]  = document.getElementById("copyType").value;
     inputData["publisherData"] = document.getElementById("publisher").value;
-    inputData["languagesData"] = document.querySelector("input[name=languages]:checked").value;
-    inputData["nPagesData"] = document.getElementById("nPages").value;
-    inputData["genreData"] = document.getElementById("genre").value;
-    inputData["priceData"] = document.getElementById("price").value;
-    inputData["pubDateData"] = document.getElementById("pubDate").value;
-
-    // return inputData;
+    inputData['languagesData'] = document.querySelectorAll('input[name=languages]:checked').value;
+    inputData["nPagesData"]    = document.getElementById("nPages").value;
+    inputData["genreData"]     = document.getElementById("genre").value;
+    inputData["priceData"]     = document.getElementById("price").value;
+    inputData["pubDateData"]   = document.getElementById("pubDate").value;
+    alert(languagesData.value);
+    return inputData;
 }
 // =============== Get Data ===============
 
@@ -31,57 +41,107 @@ function getData(){
 function fillDataTable(data){
     var dataTable = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
     var newRow = dataTable.insertRow(table.length);
-    var AuthorCell = newRow.insertCell(0);
-        // AuthorCell.innerText = data.authorData;
-    var copyTypeCell = newRow.insertCell(1);
-        // copyTypeCell.innerText = data.copyTypeData;
-    var publisherCell = newRow.insertCell(2);
-        // publisherCell.innerText = data.publisherData;
-    var languagesCell = newRow.insertCell(3);
-        // languagesCell.innerText = data.languagesData;
-    var nPagesCell = newRow.insertCell(4);
-        // nPagesCell.innerText = data.nPagesData;
-    var genreCell = newRow.insertCell(5);
-        // genreCell.innerText = data.genreData;
-    var priceCell = newRow.insertCell(6);
-        // priceCell.innerText = data.priceData;
-    var pubDateCell = newRow.insertCell(7);
-        // pubDateCell.innerText = data.pubDateData;
-    var editDelete = newRow.insertCell(8);
-        // pubDateCell.createElement("button").style.backgroundColor = "red";
 
-    if (authorValid === false && copyTypeValid === false){
-        console.log("you should fill up the required inputs");
-    } else{
-        AuthorCell.innerText = data.authorData;
-        copyTypeCell.innerText = data.copyTypeData;
-        publisherCell.innerText = data.publisherData;
-        languagesCell.innerText = data.languagesData;
-        nPagesCell.innerText = data.nPagesData;
-        genreCell.innerText = data.genreData;
-        priceCell.innerText = data.priceData;
-        pubDateCell.innerText = data.pubDateData;
-        editDelete.createElement("button").style.backgroundColor = "red";
-    }
+    var AuthorCell = newRow.insertCell(0);
+        AuthorCell.innerHTML = data.authorData;
+    var copyTypeCell = newRow.insertCell(1);
+        copyTypeCell.innerHTML = data.copyTypeData;
+    var publisherCell = newRow.insertCell(2);
+        publisherCell.innerHTML = data.publisherData;
+    var languagesCell = newRow.insertCell(3);
+        languagesCell.innerHTML = data.languagesData;
+    var nPagesCell = newRow.insertCell(4);
+        nPagesCell.innerHTML = data.nPagesData;
+    var genreCell = newRow.insertCell(5);
+        genreCell.innerHTML = data.genreData;
+    var priceCell = newRow.insertCell(6);
+        priceCell.innerHTML = data.priceData;
+    var pubDateCell = newRow.insertCell(7);
+        pubDateCell.innerHTML = data.pubDateData;
+    var editDelete = newRow.insertCell(8);
+        // editDelete.createElement("button").style.backgroundColor = "red";
+        editDelete.innerHTML = `<button onClick='onEdit(this)'>Edit</button> <button onClick='onDelete(this)'>Delete</button>`;
+
+    // if (authorValid === false && copyTypeValid === false){
+    //     console.log("you should fill up the required inputs");
+    //     alert("you should fill up the required inputs");
+    // } else{
+
+    // }
 
 
 }
 // =============== Fill Data Table ===============
 
 
+// =============== editData ===============
+function editData(td){
+    selectedRow = td.parentElement.parentElement;
+
+    document.getElementById("author").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("copyType").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("publisher").value = selectedRow.cells[2].innerHTML;
+    document.querySelector("input[name=languages]:checked").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("nPages").value = selectedRow.cells[4].innerHTML;
+    document.getElementById("genre").value = selectedRow.cells[6].innerHTML;
+    document.getElementById("price").value = selectedRow.cells[7].innerHTML;
+    document.getElementById("pubDate").value = selectedRow.cells[8].innerHTML;
+}
+// =============== editData ===============
+
+
+// =============== updateData ===============
+function updateData(formData){
+
+    selectedRow.cells[0].innerHTML = formData.authorData;
+    selectedRow.cells[1].innerHTML = formData.copyTypeData;
+    selectedRow.cells[2].innerHTML = formData.publisherData;
+    selectedRow.cells[3].innerHTML = formData.languagesData;
+    selectedRow.cells[4].innerHTML = formData.nPagesData;
+    selectedRow.cells[6].innerHTML = formData.genreData;
+    selectedRow.cells[7].innerHTML = formData.priceData;
+    selectedRow.cells[8].innerHTML = formData.pubDateData;
+}
+// =============== updateData ===============
+
+
+// =============== deleteData ===============
+function deleteData(td){
+    if(confirm('Do you want to delete this record?')){
+        row = td.parentElement.parentElement;
+        document.getElementById('dataTable').deleteRow(row.rowIndex);
+    }
+    resetForm();
+    alert("the form shoud be reset at this point")
+}
+// =============== deleteData ===============
+
 
 // =============== Reset Form ===============
 function resetForm(){
-    const myform = document.getElementById("myForm");
-    myform.reset();
+    // const myform = document.getElementById("myForm");
+    // myform.reset();
     // location.reload();
+
+    document.getElementById("author").value = '';
+    document.getElementById("copyType").value = '';
+    document.getElementById("publisher").value = '';
+    // document.querySelector("input[name=languages]:checked").value = '';
+    // document.querySelector("input[name=languages]").checked = false;
+    // document.querySelectorAll("input[name=languages]").checked = false;
+    document.querySelectorAll("input[type=radio]").checked = false;
+    document.getElementById("nPages").value = '';
+    document.getElementById("genre").value = '';
+    document.getElementById("price").value = '';
+    document.getElementById("pubDate").value = '';
+
 }
 // =============== Reset Form ===============
 
 
 // =============== VALIDATION ===============
     function validation(){
-        const form = document.getElementById("myForm");
+        // const form = document.getElementById("myForm");
 
         // Author
         const author = document.getElementById("author");
