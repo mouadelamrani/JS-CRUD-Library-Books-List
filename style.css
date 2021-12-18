@@ -193,7 +193,7 @@ tr:nth-child(even), table .dataTable thread> tr{
 
 
 /* Start Media query 500px */
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 550px) {
         /* End Form Container */
             .container{
                 padding: 0 5px;

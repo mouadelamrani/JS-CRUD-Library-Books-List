@@ -1,3 +1,5 @@
+var selectedRow = null;
+
 function libraryManager(){
     validation();
     event.preventDefault();
@@ -6,11 +8,11 @@ function libraryManager(){
     // myform.reset();
 
     if(selectedRow === null){
-        // insertNewRecord();
+    //     // insertNewRecord();
         fillDataTable(formData);
     }
     else{
-        // updateRecord(formData);
+    //     // updateRecord(formData);
         updateData(formData);
     }
     resetForm();
@@ -26,50 +28,53 @@ function getData(){
     inputData["authorData"]    = document.getElementById("author").value;
     inputData["copyTypeData"]  = document.getElementById("copyType").value;
     inputData["publisherData"] = document.getElementById("publisher").value;
-    inputData['languagesData'] = document.querySelectorAll('input[name=languages]:checked').value;
+    inputData['languagesData'] = document.querySelector('input[name="languages"]:checked').value;
     inputData["nPagesData"]    = document.getElementById("nPages").value;
     inputData["genreData"]     = document.getElementById("genre").value;
     inputData["priceData"]     = document.getElementById("price").value;
     inputData["pubDateData"]   = document.getElementById("pubDate").value;
-    alert(languagesData.value);
+    // console.log(languagesData.value);
+    // console.log(inputData.languagesData.value);
     return inputData;
 }
 // =============== Get Data ===============
 
 
 // =============== Fill Data Table ===============
-function fillDataTable(data){
+function fillDataTable(inputData){
     var dataTable = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
-    var newRow = dataTable.insertRow(table.length);
-
+    // var dataTable = document.getElementById("dataTable").getElementsByTagName("tbody");
+    // var table = document.getElementById("storeList").getElementsByTagName('tbody')[0];
+    // var newRow = table.insertRow(table.length);
+    var newRow = dataTable.insertRow(dataTable.length);
+    
+    // authorCell
     var AuthorCell = newRow.insertCell(0);
-        AuthorCell.innerHTML = data.authorData;
-    var copyTypeCell = newRow.insertCell(1);
-        copyTypeCell.innerHTML = data.copyTypeData;
-    var publisherCell = newRow.insertCell(2);
-        publisherCell.innerHTML = data.publisherData;
-    var languagesCell = newRow.insertCell(3);
-        languagesCell.innerHTML = data.languagesData;
-    var nPagesCell = newRow.insertCell(4);
-        nPagesCell.innerHTML = data.nPagesData;
-    var genreCell = newRow.insertCell(5);
-        genreCell.innerHTML = data.genreData;
-    var priceCell = newRow.insertCell(6);
-        priceCell.innerHTML = data.priceData;
+        AuthorCell.innerHTML = inputData.authorData;
+    // publisherCell
+    var publisherCell = newRow.insertCell(1); 
+        publisherCell.innerHTML = inputData.publisherData;
+    // nPagesCell
+    var nPagesCell = newRow.insertCell(2);
+        nPagesCell.innerHTML = inputData.nPagesData;
+    // priceCell
+    var priceCell = newRow.insertCell(3);
+        priceCell.innerHTML = inputData.priceData;
+    // copyTypeCell
+    var copyTypeCell = newRow.insertCell(4);
+        copyTypeCell.innerHTML = inputData.copyTypeData;
+    // languagesCell
+    var languagesCell = newRow.insertCell(5);
+        languagesCell.innerHTML = inputData.languagesData;
+    // genreCell
+    var genreCell = newRow.insertCell(6);
+        genreCell.innerHTML = inputData.genreData;
+    // pubDateCell
     var pubDateCell = newRow.insertCell(7);
-        pubDateCell.innerHTML = data.pubDateData;
+        pubDateCell.innerHTML = inputData.pubDateData;
     var editDelete = newRow.insertCell(8);
         // editDelete.createElement("button").style.backgroundColor = "red";
-        editDelete.innerHTML = `<button onClick='onEdit(this)'>Edit</button> <button onClick='onDelete(this)'>Delete</button>`;
-
-    // if (authorValid === false && copyTypeValid === false){
-    //     console.log("you should fill up the required inputs");
-    //     alert("you should fill up the required inputs");
-    // } else{
-
-    // }
-
-
+        editDelete.innerHTML = `<button onClick='editData(this)'>Edit</button> <button onClick='deleteData(this)'>Delete</button>`;
 }
 // =============== Fill Data Table ===============
 
@@ -81,7 +86,8 @@ function editData(td){
     document.getElementById("author").value = selectedRow.cells[0].innerHTML;
     document.getElementById("copyType").value = selectedRow.cells[1].innerHTML;
     document.getElementById("publisher").value = selectedRow.cells[2].innerHTML;
-    document.querySelector("input[name=languages]:checked").value = selectedRow.cells[3].innerHTML;
+    // document.querySelector('input[name="languages"]:checked').value = selectedRow.cells[3].innerHTML;
+    document.querySelector('input[name="languages"]:checked').value = selectedRow.cells[3].innerHTML;
     document.getElementById("nPages").value = selectedRow.cells[4].innerHTML;
     document.getElementById("genre").value = selectedRow.cells[6].innerHTML;
     document.getElementById("price").value = selectedRow.cells[7].innerHTML;
@@ -91,16 +97,15 @@ function editData(td){
 
 
 // =============== updateData ===============
-function updateData(formData){
-
-    selectedRow.cells[0].innerHTML = formData.authorData;
-    selectedRow.cells[1].innerHTML = formData.copyTypeData;
-    selectedRow.cells[2].innerHTML = formData.publisherData;
-    selectedRow.cells[3].innerHTML = formData.languagesData;
-    selectedRow.cells[4].innerHTML = formData.nPagesData;
-    selectedRow.cells[6].innerHTML = formData.genreData;
-    selectedRow.cells[7].innerHTML = formData.priceData;
-    selectedRow.cells[8].innerHTML = formData.pubDateData;
+function updateData(inputData){
+    selectedRow.cells[0].innerHTML = inputData.authorData;
+    selectedRow.cells[1].innerHTML = inputData.copyTypeData;
+    selectedRow.cells[2].innerHTML = inputData.publisherData;
+    selectedRow.cells[3].innerHTML = inputData.languagesData;
+    selectedRow.cells[4].innerHTML = inputData.nPagesData;
+    selectedRow.cells[6].innerHTML = inputData.genreData;
+    selectedRow.cells[7].innerHTML = inputData.priceData;
+    selectedRow.cells[8].innerHTML = inputData.pubDateData;
 }
 // =============== updateData ===============
 
@@ -126,14 +131,81 @@ function resetForm(){
     document.getElementById("author").value = '';
     document.getElementById("copyType").value = '';
     document.getElementById("publisher").value = '';
+        //  ******** Languages reset ******** 
     // document.querySelector("input[name=languages]:checked").value = '';
     // document.querySelector("input[name=languages]").checked = false;
     // document.querySelectorAll("input[name=languages]").checked = false;
-    document.querySelectorAll("input[type=radio]").checked = false;
+    // document.querySelector("input[type=radio]").checked = false;
+    document.querySelector("input[value=Arabic]").checked = false;
+    document.querySelector("input[value=English]").checked = false;
+    document.querySelector("input[value=French]").checked = false;
+    document.querySelector("input[value=Spanish]").checked = false;
+    //  ******** Languages reset ******** 
     document.getElementById("nPages").value = '';
     document.getElementById("genre").value = '';
     document.getElementById("price").value = '';
     document.getElementById("pubDate").value = '';
+
+    console.log("ResetForm is pressed");
+
+    // Author reset field
+        authorMissed.innerText = "";
+        authorMissed.style.color = "";
+        authorLbl.style.color = "";
+        author.style.border = "";
+        author.style.backgroundColor = "";
+    
+    // ِCopytype reset field    
+        copyTypeMissed.innerText = "";
+        copyTypeMissed.style.color = "";
+        copyTypeLbl.style.color = "";
+        copyType.style.border = "";
+        copyType.style.backgroundColor = "";
+
+    // Publisher reset field    
+        publisherMissed.innerText = "";
+        publisherMissed.style.color = "";
+        publisherLbl.style.color = "";
+        publisher.style.border = "";
+        publisher.style.backgroundColor = "";
+
+    // Languages reset field    
+        LanguagesMissed.innerText = "";
+        LanguagesMissed.style.color = "";
+        languagesLbl.style.color = "";
+        LanguagesContainer.style.backgroundColor = "";
+        LanguagesContainer.style.color = "";
+        LanguagesContainer.style.border = "";
+
+    // Number of pages reset field    
+        nPagesMissed.innerText = "";
+        nPagesMissed.style.color = "";
+        nPagesLbl.style.color = "";
+        nPages.style.border = "";
+        nPages.style.backgroundColor = "";
+
+    // Genre reset field    
+        genreMissed.innerText = "";
+        genreMissed.style.color = "";
+        genreLbl.style.color = "";
+        genre.style.border = "";
+        genre.style.backgroundColor = "";
+
+    // Price reset field    
+        priceMissed.innerText = "";
+        priceMissed.style.color = "";
+        priceLbl.style.color = "";
+        price.style.border = "";
+        price.style.backgroundColor = "";
+
+    // Publication date reset field    
+        pubDateMissed.innerText = "";
+        pubDateMissed.style.color = "";
+        pubDateLbl.style.color = "";
+        pubDate.style.border = "";
+        pubDate.style.backgroundColor = "";
+
+
 
 }
 // =============== Reset Form ===============
@@ -158,13 +230,15 @@ function resetForm(){
             author.style.backgroundColor = "#f5c3c3";
 
             authorValid = false;
-            console.log("authorValid is [" + authorValid +"]");
+            console.log("authorValid is missed [" + authorValid +"]");
         }else{
             authorMissed.innerText = "";
             // console.log(author.value);
             authorLbl.style.color = "green";
             author.style.border = "solid green";
             author.style.backgroundColor = "#f5fff5";
+
+            console.log("the author is {" + author.value + "}");
 
             authorValid = true;
             console.log("authorValid is [" + authorValid +"]");
@@ -184,16 +258,17 @@ function resetForm(){
             copyType.style.backgroundColor = "#f5c3c3";
 
             copyTypeValid = false;
-            console.log("authorValid is [" + copyTypeValid +"]");
+            console.log("copyTypeValid is not defined [" + copyTypeValid +"]");
         }else{
-            console.log(copyType.value);
             copyTypeMissed.innerText = "";
             copyTypeLbl.style.color = "green";
             copyType.style.border = "solid green";
             copyType.style.backgroundColor = "#f5fff5";
 
-            // copyTypeValid = false;
-            // console.log("authorValid is [" + copyTypeValid +"]");
+            console.log("the copytype is {" + copyType.value + "}");
+
+            copyTypeValid = true;
+            console.log("copyTypeValid is [" + copyTypeValid +"]");
         }
 
     //    publisher
@@ -210,13 +285,14 @@ function resetForm(){
             publisher.style.backgroundColor = "#f5c3c3";
 
             publisherValid = false;
-            console.log("publisherValid is [" + publisherValid +"]");
+            console.log("publisherValid is missed [" + publisherValid +"]");
         }else{
-            console.log(copyType.value);
             publisherMissed.innerText = "";
             publisherLbl.style.color = "green";
             publisher.style.border = "solid green";
             publisher.style.backgroundColor = "#f5fff5";
+
+            console.log("the publisher is {" + publisher.value + "}");
 
             publisherValid = true;
             console.log("publisherValid is [" + publisherValid +"]");
@@ -240,6 +316,8 @@ function resetForm(){
             LanguagesContainer.style.border = "solid green";
             LanguagesContainer.style.backgroundColor = "#f5fff5";
 
+            console.log("the chosen language is {" + document.querySelector('input[name="languages"]:checked').value + "}");
+
             languagesValid = true;
             console.log("languagesValid is [" + languagesValid +"]");
         }else{
@@ -251,7 +329,7 @@ function resetForm(){
             LanguagesContainer.style.border = "solid red";
 
             languagesValid = false;
-            console.log("languagesValid is [" + languagesValid +"]");
+            console.log("languagesValid is not defined[" + languagesValid +"]");
         }
 
         // Number of pages
@@ -268,13 +346,14 @@ function resetForm(){
             nPages.style.backgroundColor = "#f5c3c3";
 
             nPagesValid = false;
-            console.log("nPagesValid is [" + nPagesValid +"]");
+            console.log("nPagesValid is not defined [" + nPagesValid +"]");
         }else{
-            console.log(nPages.value);
             nPagesMissed.innerText = "";
             nPagesLbl.style.color = "green";
             nPages.style.border = "solid green";
             nPages.style.backgroundColor = "#f5fff5";
+
+            console.log("the number of pages date is {" + nPages.value + "}");
 
             nPagesValid = true;
             console.log("nPagesValid is [" + nPagesValid +"]");
@@ -294,13 +373,14 @@ function resetForm(){
             genre.style.backgroundColor = "#f5c3c3";
 
             genreValid = false;
-            console.log("genreValid is [" + genreValid +"]");
+            console.log("genreValid is not defined [" + genreValid +"]");
         }else{
-            console.log(genre.value);
             genreMissed.innerText = "";
             genreLbl.style.color = "green";
             genre.style.border = "solid green";
             genre.style.backgroundColor = "#f5fff5";
+
+            console.log("the selected genre is {" + genre.value + "}");
 
             genreValid = true;
             console.log("genreValid is [" + genreValid +"]");
@@ -320,13 +400,14 @@ function resetForm(){
             price.style.backgroundColor = "#f5c3c3";
 
             priceValid = false;
-            console.log("priceValid is [" + priceValid +"]");
+            console.log("priceValid is not deinfed [" + priceValid +"]");
         }else{
-            console.log(price.value);
             priceMissed.innerText = "";
             priceLbl.style.color = "green";
             price.style.border = "solid green";
             price.style.backgroundColor = "#f5fff5";
+
+            console.log("the price value is {" + price.value + "$}");
 
             priceValid = true;
             console.log("priceValid is [" + priceValid +"]");
@@ -346,13 +427,14 @@ function resetForm(){
             pubDate.style.backgroundColor = "#f5c3c3";
 
             pubDateValid = false;
-            console.log("pubDateValid is [" + pubDateValid +"]");
+            console.log("pubDateValid is not defined [" + pubDateValid +"]");
         }else{
-            console.log(pubDate.value);
             pubDateMissed.innerText = "";
             pubDateLbl.style.color = "green";
             pubDate.style.border = "solid green";
             pubDate.style.backgroundColor = "#f5fff5";
+
+            console.log("the publication date is {" + pubDate.value + "}");
 
             pubDateValid = true;
             console.log("pubDateValid is [" + pubDateValid +"]");

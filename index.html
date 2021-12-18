@@ -17,23 +17,35 @@
                     <!-- Author -->
                     <label id="authorLbl" for="Author">Author
                         <span id="authorMissed" class="errorMsg"></span>
-                        <input id="author" type="text" placeholder="Author" >
+                        <input id="author" type="text" placeholder="Author" value="Author">
+                    </label>
+
+                    <!-- Publisher -->
+                    <label id="publisherLbl" for="Publisher">Publisher
+                        <span id="publisherMissed" class="errorMsg"></span>
+                        <input id="publisher" type="text" placeholder="Publisher" value="Publisher">
+                    </label>
+
+                    <!-- Number of pages -->
+                    <label id="nPagesLbl" for="nPages">Number of Pages
+                        <span id="nPagesMissed" class="errorMsg"></span>
+                        <input id="nPages" type="number" placeholder="Number of Pages"value="10">
+                    </label>
+
+                    <!-- Price -->
+                    <label id="priceLbl" for="Price">Price
+                        <span id="priceMissed" class="errorMsg"></span>
+                        <input id="price" type="number" placeholder="Price" value="20">
                     </label>
 
                     <!-- Book Copytype -->
                     <label id="copyTypeLbl" for="copyType">Book Copytype
                         <span id="copyTypeMissed" class="errorMsg"></span>
                         <select id="copyType" name="copyType">
-                            <option value="" disabled selected>Select your copytype</option>
-                            <option value="Hardcover">Hardcover</option>
+                            <!-- <option value="" disabled selected>Select your copytype</option> -->
+                            <option value="Hardcover" selected>Hardcover</option>
                             <option value="Softcover">Softcover</option>
                         </select>
-                    </label>
-
-                    <!-- Publisher -->
-                    <label id="publisherLbl" for="Publisher">Publisher
-                        <span id="publisherMissed" class="errorMsg"></span>
-                        <input id="publisher" type="text" placeholder="Publisher">
                     </label>
 
                     <!-- Languages -->
@@ -41,7 +53,7 @@
                         <span id="LanguagesMissed" class="errorMsg"></span>
                         <div id="LanguagesContainer">
                             <label id="langLabel" for="arabic">
-                                <input type="radio" value="Arabic" name="languages">
+                                <input type="radio" value="Arabic" name="languages" checked>
                                 <span>Arabic</span>
                             </label>
                             <label id="langLabel" for="English">
@@ -59,18 +71,12 @@
                         </div>
                     </label>
                     
-                    <!-- Number of pages -->
-                    <label id="nPagesLbl" for="nPages">Number of Pages
-                        <span id="nPagesMissed" class="errorMsg"></span>
-                        <input id="nPages" type="number" placeholder="Number of Pages">
-                    </label>
-
                     <!-- Genre -->
                     <label id="genreLbl" for="Genre">Genre
                         <span id="genreMissed" class="errorMsg"></span>
                         <select id="genre" name="Genre">
-                            <option value="" disabled selected>Select the book genre</option>
-                            <option value="Action">Action</option>
+                            <!-- <option value="" disabled selected>Select the book genre</option> -->
+                            <option value="Action" selected>Action</option>
                             <option value="Classics">Classics</option>
                             <option value="Detective">Detective</option>
                             <option value="Psychology">Psychology</option>
@@ -78,16 +84,10 @@
                         </select>
                     </label>
                     
-                    <!-- Price -->
-                    <label id="priceLbl" for="Price">Price
-                        <span id="priceMissed" class="errorMsg"></span>
-                        <input id="price" type="number" placeholder="Price">
-                    </label>
-
                     <!-- Publishing Date -->
                     <label id="pubDateLbl" for="pubDate">Publishing Date
                         <span id="pubDateMissed" class="errorMsg"></span>
-                        <input id="pubDate" type="date" name="publishing date">
+                        <input id="pubDate" type="date" name="publishing date" value = "2014-02-09";>
                     </label>
             </form>
             <button type="button" onclick="libraryManager()">
