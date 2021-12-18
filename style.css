@@ -138,39 +138,54 @@ html, body, *{
 
 /* Table Style */
 table{
-    width: 100%;
-    /* margin: 40px auto; */
-    background: green;
-    font-size: 1.7rem;
-    
-
+    text-align: center; 
+    border-collapse: collapse;
+        margin: 25px 0;
+        min-width: 100%;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 th{
     font-size: 1.7rem;
+    font-weight: bold;
     color: white;
-    border-right: 1px solid white;
-
+    /* border-right: 1px solid white; */
+    text-align: center;
+    background: #ff9b05;
 }
+
+/* th:nth-child(8) {
+    background: red;
+    } */
+
 
 table .dataTable{
     text-align: center;
     width: 100%;
     font-size: 1.7rem;
+    text-align: center;
 }
 
 td{
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
+    border-bottom: 1px solid grey;
+    /* border: none; */
     text-align: left;
     padding: 8px 15px;
     font-size: 1.7rem;
-
+    text-align: center;
 }
 
 tr:nth-child(even), table .dataTable thread> tr{
-    background-color: rgb(204,200,200);
+    background-color: lightgray;
     font-size: 1.7rem;
+    text-align: center;
+}
 
+.edit, .delete{
+    margin: 10px 0;
 }
 /* Table Style */
 

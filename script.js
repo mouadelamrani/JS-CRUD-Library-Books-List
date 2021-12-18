@@ -15,7 +15,8 @@ function libraryManager(){
     //     // updateRecord(formData);
         updateData(formData);
     }
-    resetForm();
+    // resetForm();
+    restStyle()
 
 
 
@@ -74,7 +75,7 @@ function fillDataTable(inputData){
         pubDateCell.innerHTML = inputData.pubDateData;
     var editDelete = newRow.insertCell(8);
         // editDelete.createElement("button").style.backgroundColor = "red";
-        editDelete.innerHTML = `<button onClick='editData(this)'>Edit</button> <button onClick='deleteData(this)'>Delete</button>`;
+        editDelete.innerHTML = `<button class="edit" onclick="editData(this)">Edit</button> <button class="delete" onclick="deleteData(this)">Delete</button>`;
 }
 // =============== Fill Data Table ===============
 
@@ -84,14 +85,29 @@ function editData(td){
     selectedRow = td.parentElement.parentElement;
 
     document.getElementById("author").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("copyType").value = selectedRow.cells[1].innerHTML;
-    document.getElementById("publisher").value = selectedRow.cells[2].innerHTML;
-    // document.querySelector('input[name="languages"]:checked').value = selectedRow.cells[3].innerHTML;
-    document.querySelector('input[name="languages"]:checked').value = selectedRow.cells[3].innerHTML;
-    document.getElementById("nPages").value = selectedRow.cells[4].innerHTML;
+    document.getElementById("publisher").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("nPages").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("price").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("copyType").value = selectedRow.cells[4].innerHTML;
+    // document.querySelector('input[name=languages]').value = selectedRow.cells[5].innerHTML;
     document.getElementById("genre").value = selectedRow.cells[6].innerHTML;
-    document.getElementById("price").value = selectedRow.cells[7].innerHTML;
-    document.getElementById("pubDate").value = selectedRow.cells[8].innerHTML;
+    document.getElementById("pubDate").value = selectedRow.cells[7].innerHTML;
+
+
+    if( selectedRow.cells[5].innerHTML == "Arabic"){
+        console.log("Arabic radio should be selected");
+        document.getElementById("arRadio").checked = true;
+    } else if(selectedRow.cells[5].innerHTML == "English"){
+        console.log("English radio should be selected");
+        document.getElementById("enRadio").checked = true;
+    }else if(selectedRow.cells[5].innerHTML == "French"){
+        console.log("French radio should be selected");
+        document.getElementById("frRadio").checked = true;
+    }else if(selectedRow.cells[5].innerHTML == "Spanish"){
+        console.log("Spanish radio should be selected");
+        document.getElementById("spRadio").checked = true;
+
+    }
 }
 // =============== editData ===============
 
@@ -99,13 +115,21 @@ function editData(td){
 // =============== updateData ===============
 function updateData(inputData){
     selectedRow.cells[0].innerHTML = inputData.authorData;
-    selectedRow.cells[1].innerHTML = inputData.copyTypeData;
-    selectedRow.cells[2].innerHTML = inputData.publisherData;
-    selectedRow.cells[3].innerHTML = inputData.languagesData;
-    selectedRow.cells[4].innerHTML = inputData.nPagesData;
+    selectedRow.cells[1].innerHTML = inputData.publisherData;
+    selectedRow.cells[2].innerHTML = inputData.nPagesData;
+    selectedRow.cells[3].innerHTML = inputData.priceData;
+    selectedRow.cells[4].innerHTML = inputData.copyTypeData;
+    selectedRow.cells[5].innerHTML = inputData.languagesData;
     selectedRow.cells[6].innerHTML = inputData.genreData;
-    selectedRow.cells[7].innerHTML = inputData.priceData;
-    selectedRow.cells[8].innerHTML = inputData.pubDateData;
+    selectedRow.cells[7].innerHTML = inputData.pubDateData;
+    // selectedRow.cells[0].innerHTML = inputData.authorData;
+    // selectedRow.cells[1].innerHTML = inputData.copyTypeData;
+    // selectedRow.cells[2].innerHTML = inputData.publisherData;
+    // selectedRow.cells[3].innerHTML = inputData.languagesData;
+    // selectedRow.cells[4].innerHTML = inputData.nPagesData;
+    // selectedRow.cells[5].innerHTML = inputData.genreData;
+    // selectedRow.cells[6].innerHTML = inputData.priceData;
+    // selectedRow.cells[7].innerHTML = inputData.pubDateData;
 }
 // =============== updateData ===============
 
@@ -132,10 +156,6 @@ function resetForm(){
     document.getElementById("copyType").value = '';
     document.getElementById("publisher").value = '';
         //  ******** Languages reset ******** 
-    // document.querySelector("input[name=languages]:checked").value = '';
-    // document.querySelector("input[name=languages]").checked = false;
-    // document.querySelectorAll("input[name=languages]").checked = false;
-    // document.querySelector("input[type=radio]").checked = false;
     document.querySelector("input[value=Arabic]").checked = false;
     document.querySelector("input[value=English]").checked = false;
     document.querySelector("input[value=French]").checked = false;
@@ -148,66 +168,71 @@ function resetForm(){
 
     console.log("ResetForm is pressed");
 
-    // Author reset field
-        authorMissed.innerText = "";
-        authorMissed.style.color = "";
-        authorLbl.style.color = "";
-        author.style.border = "";
-        author.style.backgroundColor = "";
-    
-    // ِCopytype reset field    
-        copyTypeMissed.innerText = "";
-        copyTypeMissed.style.color = "";
-        copyTypeLbl.style.color = "";
-        copyType.style.border = "";
-        copyType.style.backgroundColor = "";
-
-    // Publisher reset field    
-        publisherMissed.innerText = "";
-        publisherMissed.style.color = "";
-        publisherLbl.style.color = "";
-        publisher.style.border = "";
-        publisher.style.backgroundColor = "";
-
-    // Languages reset field    
-        LanguagesMissed.innerText = "";
-        LanguagesMissed.style.color = "";
-        languagesLbl.style.color = "";
-        LanguagesContainer.style.backgroundColor = "";
-        LanguagesContainer.style.color = "";
-        LanguagesContainer.style.border = "";
-
-    // Number of pages reset field    
-        nPagesMissed.innerText = "";
-        nPagesMissed.style.color = "";
-        nPagesLbl.style.color = "";
-        nPages.style.border = "";
-        nPages.style.backgroundColor = "";
-
-    // Genre reset field    
-        genreMissed.innerText = "";
-        genreMissed.style.color = "";
-        genreLbl.style.color = "";
-        genre.style.border = "";
-        genre.style.backgroundColor = "";
-
-    // Price reset field    
-        priceMissed.innerText = "";
-        priceMissed.style.color = "";
-        priceLbl.style.color = "";
-        price.style.border = "";
-        price.style.backgroundColor = "";
-
-    // Publication date reset field    
-        pubDateMissed.innerText = "";
-        pubDateMissed.style.color = "";
-        pubDateLbl.style.color = "";
-        pubDate.style.border = "";
-        pubDate.style.backgroundColor = "";
-
-
-
+    restStyle()
 }
+
+        // ********** Reset Styling **********
+                function restStyle(){
+                // Author reset field
+                    authorMissed.innerText = "";
+                    authorMissed.style.color = "";
+                    authorLbl.style.color = "";
+                    author.style.border = "";
+                    author.style.backgroundColor = "";
+                
+                // ِCopytype reset field    
+                    copyTypeMissed.innerText = "";
+                    copyTypeMissed.style.color = "";
+                    copyTypeLbl.style.color = "";
+                    copyType.style.border = "";
+                    copyType.style.backgroundColor = "";
+            
+                // Publisher reset field    
+                    publisherMissed.innerText = "";
+                    publisherMissed.style.color = "";
+                    publisherLbl.style.color = "";
+                    publisher.style.border = "";
+                    publisher.style.backgroundColor = "";
+            
+                // Languages reset field    
+                    LanguagesMissed.innerText = "";
+                    LanguagesMissed.style.color = "";
+                    languagesLbl.style.color = "";
+                    LanguagesContainer.style.backgroundColor = "";
+                    LanguagesContainer.style.color = "";
+                    LanguagesContainer.style.border = "";
+            
+                // Number of pages reset field    
+                    nPagesMissed.innerText = "";
+                    nPagesMissed.style.color = "";
+                    nPagesLbl.style.color = "";
+                    nPages.style.border = "";
+                    nPages.style.backgroundColor = "";
+            
+                // Genre reset field    
+                    genreMissed.innerText = "";
+                    genreMissed.style.color = "";
+                    genreLbl.style.color = "";
+                    genre.style.border = "";
+                    genre.style.backgroundColor = "";
+            
+                // Price reset field    
+                    priceMissed.innerText = "";
+                    priceMissed.style.color = "";
+                    priceLbl.style.color = "";
+                    price.style.border = "";
+                    price.style.backgroundColor = "";
+            
+                // Publication date reset field    
+                    pubDateMissed.innerText = "";
+                    pubDateMissed.style.color = "";
+                    pubDateLbl.style.color = "";
+                    pubDate.style.border = "";
+                    pubDate.style.backgroundColor = "";
+                }
+        // ********** Reset Styling **********
+
+ 
 // =============== Reset Form ===============
 
 
