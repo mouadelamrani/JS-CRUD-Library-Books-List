@@ -60,7 +60,9 @@ function fillDataTable(inputData){
         nPagesCell.innerHTML = inputData.nPagesData;
     // priceCell
     var priceCell = newRow.insertCell(3);
+        // priceCell.innerHTML = "$" + inputData.priceData;
         priceCell.innerHTML = inputData.priceData;
+
     // copyTypeCell
     var copyTypeCell = newRow.insertCell(4);
         copyTypeCell.innerHTML = inputData.copyTypeData;
@@ -87,7 +89,15 @@ function editData(td){
     document.getElementById("author").value = selectedRow.cells[0].innerHTML;
     document.getElementById("publisher").value = selectedRow.cells[1].innerHTML;
     document.getElementById("nPages").value = selectedRow.cells[2].innerHTML;
+    // alert(typeof(document.getElementById("nPages").value) + " value is " + document.getElementById("nPages").value)
+    
+    // document.getElementById("price").value.replace(/\/$/, '/')
+    // selectedRow.cells[3].value.replace(/\/$/$, '/')
+    // selectedRow.cells[3].innerHTML.value.replace("$", "0")
+    // alert(typeof(selectedRow.cells[4].innerHTML.value) + " value is " + selectedRow.cells[3].innerHTML.value)
+    // parseInt(document.getElementById("price").value)
     document.getElementById("price").value = selectedRow.cells[3].innerHTML;
+
     document.getElementById("copyType").value = selectedRow.cells[4].innerHTML;
     // document.querySelector('input[name=languages]').value = selectedRow.cells[5].innerHTML;
     document.getElementById("genre").value = selectedRow.cells[6].innerHTML;
