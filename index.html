@@ -42,8 +42,8 @@
                     <label id="copyTypeLbl" for="copyType">Book Copytype
                         <span id="copyTypeMissed" class="errorMsg"></span>
                         <select id="copyType" name="copyType">
-                            <!-- <option value="" disabled selected>Select your copytype</option> -->
-                            <option value="Hardcover" selected>Hardcover</option>
+                            <option value="" disabled selected>Select your copytype</option>
+                            <option value="Hardcover">Hardcover</option>
                             <option value="Softcover">Softcover</option>
                         </select>
                     </label>
@@ -75,8 +75,8 @@
                     <label id="genreLbl" for="Genre">Genre
                         <span id="genreMissed" class="errorMsg"></span>
                         <select id="genre" name="Genre">
-                            <!-- <option value="" disabled selected>Select the book genre</option> -->
-                            <option value="Action" selected>Action</option>
+                            <option value="" disabled selected>Select the book genre</option>
+                            <option value="Action">Action</option>
                             <option value="Classics">Classics</option>
                             <option value="Detective">Detective</option>
                             <option value="Psychology">Psychology</option>
@@ -90,8 +90,8 @@
                         <input id="pubDate" type="date" name="publishing date" value = "2014-02-09";>
                     </label>
             </form>
-            <button type="button" onclick="libraryManager()">
-                SUBMIT
+            <button id="mainButton" type="button" onclick="libraryManager()">
+                ADD
             </button>
             <button type="button" onclick="resetForm()">
                 RESET
@@ -111,6 +111,7 @@
                 <th>Language</th>
                 <th>Genre</th>
                 <th>Publishing date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>

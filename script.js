@@ -15,7 +15,7 @@ function libraryManager(){
     //     // updateRecord(formData);
         updateData(formData);
     }
-    // resetForm();
+    resetForm();
     restStyle()
 
 
@@ -84,6 +84,8 @@ function fillDataTable(inputData){
 
 // =============== editData ===============
 function editData(td){
+    document.getElementById("mainButton").innerText = "UPDATE";
+
     selectedRow = td.parentElement.parentElement;
 
     document.getElementById("author").value = selectedRow.cells[0].innerHTML;
@@ -116,7 +118,6 @@ function editData(td){
     }else if(selectedRow.cells[5].innerHTML == "Spanish"){
         console.log("Spanish radio should be selected");
         document.getElementById("spRadio").checked = true;
-
     }
 }
 // =============== editData ===============
@@ -140,6 +141,9 @@ function updateData(inputData){
     // selectedRow.cells[5].innerHTML = inputData.genreData;
     // selectedRow.cells[6].innerHTML = inputData.priceData;
     // selectedRow.cells[7].innerHTML = inputData.pubDateData;
+    validation()
+    document.getElementById("mainButton").innerText = "ADD";
+
 }
 // =============== updateData ===============
 
@@ -150,8 +154,9 @@ function deleteData(td){
         row = td.parentElement.parentElement;
         document.getElementById('dataTable').deleteRow(row.rowIndex);
     }
-    resetForm();
-    alert("the form shoud be reset at this point")
+    
+    // resetForm();
+    // alert("the form shoud be reset at this point")
 }
 // =============== deleteData ===============
 

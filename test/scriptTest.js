@@ -8,7 +8,7 @@ function onFormSubmit(e){
     else{
         updateRecord(formData);
     }
-    // resetForm();
+    resetForm();
 }
 
 //Retrieve the data

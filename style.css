@@ -166,6 +166,11 @@ table .dataTable{
     width: 100%;
     font-size: 1.7rem;
     text-align: center;
+
+    /* test */
+    width: 100%;
+    height: 100px;
+    overflow: scroll;
 }
 
 td{
