@@ -159,7 +159,7 @@ function deleteData(td){
         document.getElementById('dataTable').deleteRow(row.rowIndex);
     }
     
-    // resetForm();
+    resetForm();
     // alert("the form shoud be reset at this point")
 }
 // =============== deleteData ===============
