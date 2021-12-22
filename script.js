@@ -1,6 +1,9 @@
 var selectedRow = null;
 
 function libraryManager(){
+    // if(authorValid == false || copyTypeValid == false || publisherValid == false || languagesValid == true || nPagesValid == false || genreValid == false || priceValid == false || pubDateValid == false){
+
+    // }
     validation();
     event.preventDefault();
 
@@ -17,9 +20,6 @@ function libraryManager(){
     }
     resetForm();
     restStyle()
-
-
-
 }
 
 
@@ -84,6 +84,8 @@ function fillDataTable(inputData){
 
 // =============== editData ===============
 function editData(td){
+    restStyle()
+
     document.getElementById("mainButton").innerText = "UPDATE";
 
     selectedRow = td.parentElement.parentElement;
@@ -143,6 +145,8 @@ function updateData(inputData){
     // selectedRow.cells[7].innerHTML = inputData.pubDateData;
     validation()
     document.getElementById("mainButton").innerText = "ADD";
+
+    // break
 
 }
 // =============== updateData ===============
@@ -269,7 +273,7 @@ function resetForm(){
             author.style.border = "solid red";
             author.style.backgroundColor = "#f5c3c3";
 
-            authorValid = false;
+            authorValid = false; 
             console.log("authorValid is missed [" + authorValid +"]");
         }else{
             authorMissed.innerText = "";
@@ -297,7 +301,7 @@ function resetForm(){
             copyType.style.border = "solid red";
             copyType.style.backgroundColor = "#f5c3c3";
 
-            copyTypeValid = false;
+            copyTypeValid = false; 
             console.log("copyTypeValid is not defined [" + copyTypeValid +"]");
         }else{
             copyTypeMissed.innerText = "";
@@ -358,7 +362,7 @@ function resetForm(){
 
             console.log("the chosen language is {" + document.querySelector('input[name="languages"]:checked').value + "}");
 
-            languagesValid = true;
+            languagesValid = true; 
             console.log("languagesValid is [" + languagesValid +"]");
         }else{
             LanguagesMissed.innerText = "is not defined";
@@ -385,7 +389,7 @@ function resetForm(){
             nPages.style.border = "solid red";
             nPages.style.backgroundColor = "#f5c3c3";
 
-            nPagesValid = false;
+            nPagesValid = false; 
             console.log("nPagesValid is not defined [" + nPagesValid +"]");
         }else{
             nPagesMissed.innerText = "";
@@ -412,7 +416,7 @@ function resetForm(){
             genre.style.border = "solid red";
             genre.style.backgroundColor = "#f5c3c3";
 
-            genreValid = false;
+            genreValid = false; 
             console.log("genreValid is not defined [" + genreValid +"]");
         }else{
             genreMissed.innerText = "";
@@ -439,7 +443,8 @@ function resetForm(){
             price.style.border = "solid red";
             price.style.backgroundColor = "#f5c3c3";
 
-            priceValid = false;
+            priceValid = false; 
+
             console.log("priceValid is not deinfed [" + priceValid +"]");
         }else{
             priceMissed.innerText = "";
