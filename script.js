@@ -1,4 +1,4 @@
-var selectedRow = null;
+var selectedRow = false;
 
 function libraryManager(){
     // if(authorValid == false || copyTypeValid == false || publisherValid == false || languagesValid == true || nPagesValid == false || genreValid == false || priceValid == false || pubDateValid == false){
@@ -10,14 +10,15 @@ function libraryManager(){
     var formData = getData()
     // myform.reset();
 
-    if(selectedRow === null){
+    // if(selectedRow === null){
+    if(!selectedRow){
     //     // insertNewRecord();
         fillDataTable(formData);
     }
-    else{
-    //     // updateRecord(formData);
-        updateData(formData);
-    }
+    // else{
+    // //     // updateRecord(formData);
+    //     updateData(formData);
+    // }
     resetForm();
     restStyle()
 }
@@ -29,13 +30,20 @@ function getData(){
     inputData["authorData"]    = document.getElementById("author").value;
     inputData["copyTypeData"]  = document.getElementById("copyType").value;
     inputData["publisherData"] = document.getElementById("publisher").value;
-    inputData['languagesData'] = document.querySelector('input[name="languages"]:checked').value;
+    // inputData['languagesData'] = document.querySelector('input[name="languages"]:checked').value;
+    inputData['languagesData'] = document.querySelector('input[name=languages]:checked').value;
     inputData["nPagesData"]    = document.getElementById("nPages").value;
     inputData["genreData"]     = document.getElementById("genre").value;
     inputData["priceData"]     = document.getElementById("price").value;
     inputData["pubDateData"]   = document.getElementById("pubDate").value;
     // console.log(languagesData.value);
     // console.log(inputData.languagesData.value);
+    if(){}
+    // document.querySelector("input[value=Arabic]").checked = false;
+    // document.querySelector("input[value=English]").checked = false;
+    // document.querySelector("input[value=French]").checked = false;
+    // document.querySelector("input[value=Spanish]").checked = false;
+
     return inputData;
 }
 // =============== Get Data ===============
@@ -47,6 +55,7 @@ function fillDataTable(inputData){
     // var dataTable = document.getElementById("dataTable").getElementsByTagName("tbody");
     // var table = document.getElementById("storeList").getElementsByTagName('tbody')[0];
     // var newRow = table.insertRow(table.length);
+    // var newRow = dataTable.insertRow(dataTable.length);
     var newRow = dataTable.insertRow(dataTable.length);
     
     // authorCell
@@ -86,7 +95,7 @@ function fillDataTable(inputData){
 function editData(td){
     restStyle()
 
-    document.getElementById("mainButton").innerText = "UPDATE";
+    // document.getElementById("mainButton").innerText = "UPDATE";
 
     selectedRow = td.parentElement.parentElement;
 
@@ -127,6 +136,8 @@ function editData(td){
 
 // =============== updateData ===============
 function updateData(inputData){
+    // getData()
+
     selectedRow.cells[0].innerHTML = inputData.authorData;
     selectedRow.cells[1].innerHTML = inputData.publisherData;
     selectedRow.cells[2].innerHTML = inputData.nPagesData;
@@ -143,11 +154,12 @@ function updateData(inputData){
     // selectedRow.cells[5].innerHTML = inputData.genreData;
     // selectedRow.cells[6].innerHTML = inputData.priceData;
     // selectedRow.cells[7].innerHTML = inputData.pubDateData;
-    validation()
-    document.getElementById("mainButton").innerText = "ADD";
+    // validation()
+    // document.getElementById("mainButton").innerText = "ADD";
 
-    // break
-
+    // return("Update done")
+    // resetForm();
+    // restStyle()
 }
 // =============== updateData ===============
 
@@ -179,7 +191,7 @@ function resetForm(){
     document.querySelector("input[value=English]").checked = false;
     document.querySelector("input[value=French]").checked = false;
     document.querySelector("input[value=Spanish]").checked = false;
-    //  ******** Languages reset ******** 
+        //  ******** Languages reset ******** 
     document.getElementById("nPages").value = '';
     document.getElementById("genre").value = '';
     document.getElementById("price").value = '';
