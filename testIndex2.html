@@ -1,0 +1,28 @@
+<html>
+  <head>
+
+ </head>
+  <body>
+ <form>
+   Gender: 
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+  
+    
+    <input type="submit" name="SubmitButton" value="Submit" onClick="ValidateForm(this.form)">
+ <input type="reset" value="Reset">
+  </form> 
+
+  <script>
+    function ValidateForm(form){
+      ErrorText= "";
+      if ( ( form.gender[0].checked == false ) && ( form.gender[1].checked == false ) ) 
+      {
+      alert ( "Please choose your Gender: Male or Female" ); 
+      return false;
+      }
+      if (ErrorText= "") { form.submit() }
+      }
+    </script>
+  </body>
+  </html>

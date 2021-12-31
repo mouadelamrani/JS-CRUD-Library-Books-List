@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          table tr:not(:first-child){
+                cursor: pointer;transition: all .25s ease-in-out;
+            }
+            table tr:not(:first-child):hover{background-color: #ddd;}
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #genreContainer{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <form autocomplete="off">
+        <!-- Work Title -->
+            <label>Work Title
+                <span ></span>
+                <input type="text" name="fname" id="fname" value="test">
+            </label>
+
+        <!-- Author Name -->
+            <label>Author Name
+                <span></span>
+                <input type="text" name="lname" id="lname" value="test">
+            </label>
+
+        <!-- Price -->
+            <label >Price
+                <span></span>
+                <input type="text" name="age" id="age" value="test">
+            </label>
+
+        <!-- Publishing Date -->
+            <label>Publishing Date
+                <span></span>
+                <input type="date" name="pubDate">
+            </label>
+
+        <!-- Language -->
+            <label>Language
+                <span></span>
+                <select name="languages">
+                    <option value="" disabled selected>Select the book language</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="French">French</option>
+                    <option value="English">English</option>
+                </select>
+            </label>
+
+        <!-- Genre -->
+            <div id="genreContainer">
+                <label for="Novel">
+                    <input type="radio" value="Novel" name="genre"><span>Novel</span>    
+                </label>
+        
+                <label for="Essay">
+                    <input type="radio" value="Essay" name="genre"><span>Essay</span>    
+                </label>
+        
+                <label for="Comic">
+                    <input type="radio" value="Comic" name="genre"><span>Comic</span>
+                </label>
+            </div>
+
+        
+        <button type="button" onclick="addRow();">Add Row</button>
+        <button type="button" onclick="editRow();">Edit Row</button>
+        <button type="button" onclick="resetInput();">Reset</button>
+
+
+    </form>
+
+        <table id="table" border="1">
+            
+            <tr>
+                <th>ًWork Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Language</th>
+                <th>genre</th>
+            </tr>
+            
+            <tr>
+                <td>FN1</td>
+                <td>LN1</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+            </tr>
+            
+            <tr">
+                <td>FN2</td>
+                <td>LN2</td>
+                <td>20</td>
+                <td>20</td>
+                <td>20</td>
+                <td>20</td>
+            </tr>
+            
+            <tr>
+                <td>FN3</td>
+                <td>LN3</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+                <td>30</td>
+            </tr>
+            
+            <tr>
+                <td>FN4</td>
+                <td>LN4</td>
+                <td>40</td>
+                <td>40</td>
+                <td>40</td>
+                <td>40</td>
+            </tr>
+            
+            <tr>
+                <td>FN5</td>
+                <td>LN5</td>
+                <td>50</td>
+                
+            </tr>
+            
+        </table>
+
+    
+    
+    <script> 
+
+        // Add row to the table
+        function addRow()
+            {
+                // get input values
+                var fname = document.getElementById('fname').value;
+                var lname = document.getElementById('lname').value;
+                var age = document.getElementById('age').value;
+                  
+                // get the html table
+                // 0 = the first table
+                var tableAdd = document.getElementsByTagName('table')[0];
+                  
+                // add new empty row to the table
+                // 0 = in the top 
+                // table.rows.length = the end
+                // table.rows.length/2+1 = the center
+                var newRow = tableAdd.insertRow(1);
+
+                // add cells to the row
+                var cel1 = newRow.insertCell(0);
+                var cel2 = newRow.insertCell(1);
+                var cel3 = newRow.insertCell(2);
+                
+                // add values to the cells
+                cel1.innerHTML = fname;
+                cel2.innerHTML = lname;
+                cel3.innerHTML = age;
+
+                resetInput();
+            }           
+    
+            // get selected row
+            // display selected row data in text input
+            // var tableUp = document.getElementById("table"),rIndex;
+            var tableUp = document.getElementById("table");
+            
+            for(var i = 1; i < tableUp.rows.length; i++)
+            {
+                tableUp.rows[i].onclick = function()
+                {
+                    rIndex = this.rowIndex;
+                    console.log(rIndex);
+                    
+                    document.getElementById("fname").value = this.cells[0].innerHTML;
+                    document.getElementById("lname").value = this.cells[1].innerHTML;
+                    document.getElementById("age").value = this.cells[2].innerHTML;
+                };
+            }        
+        
+       // edit the row
+        function editRow()
+        {
+            
+            tableUp.rows[rIndex].cells[0].innerHTML = document.getElementById("fname").value;
+            tableUp.rows[rIndex].cells[1].innerHTML = document.getElementById("lname").value;
+            tableUp.rows[rIndex].cells[2].innerHTML = document.getElementById("age").value;
+
+            resetInput();
+
+        }
+
+
+        // Reset Inputs
+        function resetInput(){
+            document.getElementById("fname").value = "";
+            document.getElementById("lname").value = "";
+            document.getElementById("age").value = "";
+        }
+
+        
+        
+    </script>    
+    
+</body>
+</html>

@@ -38,7 +38,7 @@ function getData(){
     inputData["pubDateData"]   = document.getElementById("pubDate").value;
     // console.log(languagesData.value);
     // console.log(inputData.languagesData.value);
-    if(){}
+    // if(){}
     // document.querySelector("input[value=Arabic]").checked = false;
     // document.querySelector("input[value=English]").checked = false;
     // document.querySelector("input[value=French]").checked = false;
@@ -101,18 +101,9 @@ function editData(td){
 
     document.getElementById("author").value = selectedRow.cells[0].innerHTML;
     document.getElementById("publisher").value = selectedRow.cells[1].innerHTML;
-    document.getElementById("nPages").value = selectedRow.cells[2].innerHTML;
-    // alert(typeof(document.getElementById("nPages").value) + " value is " + document.getElementById("nPages").value)
-    
-    // document.getElementById("price").value.replace(/\/$/, '/')
-    // selectedRow.cells[3].value.replace(/\/$/$, '/')
-    // selectedRow.cells[3].innerHTML.value.replace("$", "0")
-    // alert(typeof(selectedRow.cells[4].innerHTML.value) + " value is " + selectedRow.cells[3].innerHTML.value)
-    // parseInt(document.getElementById("price").value)
+    document.getElementById("nPages").value = selectedRow.cells[2].innerHTML;    
     document.getElementById("price").value = selectedRow.cells[3].innerHTML;
-
     document.getElementById("copyType").value = selectedRow.cells[4].innerHTML;
-    // document.querySelector('input[name=languages]').value = selectedRow.cells[5].innerHTML;
     document.getElementById("genre").value = selectedRow.cells[6].innerHTML;
     document.getElementById("pubDate").value = selectedRow.cells[7].innerHTML;
 
@@ -135,9 +126,7 @@ function editData(td){
 
 
 // =============== updateData ===============
-function updateData(inputData){
-    // getData()
-
+ function updateData(inputData){
     selectedRow.cells[0].innerHTML = inputData.authorData;
     selectedRow.cells[1].innerHTML = inputData.publisherData;
     selectedRow.cells[2].innerHTML = inputData.nPagesData;
