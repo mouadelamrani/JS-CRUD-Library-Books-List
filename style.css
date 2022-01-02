@@ -6,233 +6,186 @@ html, body, *{
     font-size: 10px;
 }
 
-
-/* Start Form Container */
-    .container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 0 15%;
-        gap: 20px;
-    }
-    form{
-        width: 100%;
+.fromContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 15%;
+    gap: 20px;
+}
+form{
+    width: 100%;
         /* background-color: aqua; */
         display: grid;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
         /* justify-items: center; */
         gap: 10px;
-    }
-    #LanguagesContainer{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 10px 0 10px;;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        border: 1px solid grey;
-    }
-    input[type="text"],input[type="date"],input[type="number"], select, option{
-        width: 100%;
-        height: 50px;
-        padding: 0 10px 0 10px;
-        font-size: 1.3rem;
-        border-radius: 5px;
-        border: 1px solid grey;
-    }
+}
+table tr:not(:first-child), td:not(last-child){
+    cursor: pointer;
+    transition: all .25s ease-in-out;
+    /* transition: none; */
+}
 
-    select, option{
-        cursor: pointer;
-    }
-    input::-webkit-calendar-picker-indicator {
-        cursor: pointer;
-    }
+/* table tr:not(:first-child):hover, td:not(:last-child):hover{background-color: #ddd;} */
 
-    input:focus{
-        outline: 0;
-    }
+table tr:not(:first-child):hover{
+    background-color: rgba(211, 211, 211, 0.331);
+}
 
+table th{
+    padding: 0 10px;
+    font-size: 1.5rem;
+    height: 50px;
+    background-color: wheat;
+}
 
-    input[type="radio"]{
-        width: 20px;
-        height: 20px;
-        margin: 0 7px 0 0;
-        /* background: red; */
-        font-size: 1.3rem;
-        cursor: pointer;
-    }
-    label{
-        padding: 5px 0 0 0;
-        font-size: 1.6rem;
-        font-weight: 600;
-    }
-    #langLabel{
-        padding: 0;
-        display: flex;
-        align-items: center;
-    }
-    span{
-        font-size: 1.3rem;
-        font-weight: 400;
-    }
-
-    .errorMsg{
-        font-size: 1.6rem;
-        font-weight: 600;
-    }
-
-    button{
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: 600;    
-        padding: 1em;
-        cursor: pointer;
-    }
-/* End Form Container */
-
-/* Start Table */
-    /* .content-table {
-        border-collapse: collapse;
-        margin: 25px 0;
-        font-size: 0.9em;
-        min-width: 100%;
-        border-radius: 5px 5px 0 0;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .content-table thead tr {
-        background-color: #009879;
-        color: #ffffff;
-        text-align: left;
-        font-weight: bold;
-    }
-
-    .content-table th,
-    .content-table td {
-        padding: 12px 15px;
-    }
-
-    .content-table tbody tr {
-        border-bottom: 1px solid #dddddd;
-    }
-
-    .content-table tbody tr:nth-of-type(even) {
-        background-color: #f3f3f3;
-    }
-
-    .content-table tbody tr:last-of-type {
-        border-bottom: 2px solid #009879;
-    }
-
-    .content-table tbody tr.active-row {
-        font-weight: bold;
-        color: #009879;
-    }   */
-/* End Table */
-
-/* Table Style */
+/* 
+    - The table width = 100%
+    - Table sholuld be in the center
+    - 
+*/
 table{
-    text-align: center; 
-    border-collapse: collapse;
-        margin: 25px 0;
-        min-width: 100%;
-        border-radius: 5px 5px 0 0;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    /* border-collapse: collapse; */
+    border-spacing:0;
+    width: 100%;
 }
 
-th{
-    font-size: 1.7rem;
-    font-weight: bold;
+table tr > td{
+    text-align: center;
+    border-spacing:0;
+    font-size: 1.3rem;
+    padding: 10px 5px;
+    /* height: 50px; */
+}
+/* table td:last-child:hover{
+    background-color: white;
+} */
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+label{
+    width: 100%;
+    padding: 5px 0 0 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+#genreContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.genreLbl{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.genreLbl > span{
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+input[type="text"],input[type="date"],input[type="number"], select, option{
+    width: 100%;
+    height: 50px;
+    padding: 0 10px 0 10px;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+select, option{
+    cursor: pointer;
+}
+input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+input:focus{
+    border: 2px solid blue;
+    outline: 0;
+    /* outline-color: blue; */
+    transition: all .1s ease-in-out;
+    background-color: rgba(0, 0, 255, 0.03);
+}
+select:focus{
+    border: 2px solid blue;
+    outline: 0;
+    /* outline-color: blue; */
+    transition: all .1s ease-in-out;
+    background-color: rgba(0, 0, 255, 0.03);
+
+}
+
+#genreContainer:focus-within{
+    border: 2px solid blue;
+    outline: 0;
+    /* outline-color: blue; */
+    transition: all .1s ease-in-out;
+    background-color: rgba(0, 0, 255, 0.03);
+}
+
+button{
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 600;    
+    padding: .7em;
+    cursor: pointer;
+    border-radius: 5px;
+    border: .5px solid grey;
+}
+
+button:hover{
+    transition: all .1s ease-in-out;
+}
+
+#Add{
+    border: .5px solid green;
+    background-color: rgba(0, 255, 157, 0.144);
+}
+#Add:hover{
+    border: .5px solid green;
+    background-color: rgba(0, 255, 157, 0.6);
+}
+#Update{
+    border: .5px solid cornflowerblue;
+    background-color: rgba(100, 148, 237, 0.144);
+}
+#Update:hover{
+    border: .5px solid cornflowerblue;
+    background-color: rgba(100, 148, 237, 0.6);
+}
+#Remove{
+    border: .5px solid red;
+    background-color: rgba(255, 0, 0, 0.144);
+}
+#Remove:hover{
+    border: .5px solid red;
+    background-color: rgba(255, 0, 0, 0.6);
     color: white;
-    /* border-right: 1px solid white; */
-    text-align: center;
-    background: #ff9b05;
+    transition: all .1s ease-in-out;
 }
 
-/* th:nth-child(8) {
-    background: red;
-    } */
-
-
-table .dataTable{
-    text-align: center;
-    width: 100%;
-    font-size: 1.7rem;
-    text-align: center;
-
-    /* test */
-    width: 100%;
-    height: 100px;
-    overflow: scroll;
+#Update, #Remove{
+    display: none;
 }
 
-td{
-    /* border: 1px solid grey; */
-    border-bottom: 1px solid grey;
-    /* border: none; */
-    text-align: left;
-    padding: 8px 15px;
-    font-size: 1.7rem;
-    text-align: center;
+.spanErrorClass{
+    color: red;
+    font-size: 1.5rem;
 }
-
-tr:nth-child(even), table .dataTable thread> tr{
-    background-color: lightgray;
-    font-size: 1.7rem;
-    text-align: center;
-}
-
-.edit, .delete{
-    margin: 10px 0;
-}
-/* Table Style */
-
-
-/* Start Media query 1100px */
-    @media only screen and (max-width: 1100px) {
-        /* End Form Container */
-            .container{
-                padding: 0 20%;
-            }
-            form{
-                grid-template-columns: 1fr;
-            }
-        /* End Form Container */
-        
-        /* Start Table */
-        /* End Table */
-    }
-/* END Media query 1100px */
-
-
-/* Start Media query 500px */
-    @media only screen and (max-width: 550px) {
-        /* End Form Container */
-            .container{
-                padding: 0 5px;
-            }
-            
-            form{
-                grid-template-columns: 1fr;
-            }
-
-            #LanguagesContainer{
-                flex-direction: column;
-                height: fit-content;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 10px;
-            }
-        /* End Form Container */
-            
-            /* Start Table */
-            /* End Table */
-    }
-/* END Media query 500px */

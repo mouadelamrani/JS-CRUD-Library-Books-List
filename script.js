@@ -1,493 +1,226 @@
-var selectedRow = false;
-
-function libraryManager(){
-    // if(authorValid == false || copyTypeValid == false || publisherValid == false || languagesValid == true || nPagesValid == false || genreValid == false || priceValid == false || pubDateValid == false){
-
-    // }
-    validation();
-    event.preventDefault();
-
-    var formData = getData()
-    // myform.reset();
-
-    // if(selectedRow === null){
-    if(!selectedRow){
-    //     // insertNewRecord();
-        fillDataTable(formData);
-    }
-    // else{
-    // //     // updateRecord(formData);
-    //     updateData(formData);
-    // }
-    resetForm();
-    restStyle()
+function radioChecker(){
+    if(document.getElementById('Novel').checked) {   
+     console.log(document.getElementById("Novel").value + " radio button is checked");   
+    //  alert(document.getElementById("Novel").value + " radio button is checked");   
+    }   
+    else if(document.getElementById('Essay').checked) {   
+     console.log(document.getElementById("Essay").value + " radio button is checked");   
+    //  alert(document.getElementById("Essay").value + " radio button is checked");   
+    }   
+    else if(document.getElementById('Comic').checked) {   
+     console.log(document.getElementById("Comic").value + " radio button is checked");   
+    //  alert(document.getElementById("Comic").value + " radio button is checked");   
+    }   
+    else {   
+    console.log("no radio is selcted") 
+    // alert("no radio is selcted") 
+    }   
 }
 
+var rIndex, table = document.getElementById("table");
 
-// =============== Get Data ===============
-function getData(){
-    var inputData = {};
-    inputData["authorData"]    = document.getElementById("author").value;
-    inputData["copyTypeData"]  = document.getElementById("copyType").value;
-    inputData["publisherData"] = document.getElementById("publisher").value;
-    // inputData['languagesData'] = document.querySelector('input[name="languages"]:checked').value;
-    inputData['languagesData'] = document.querySelector('input[name=languages]:checked').value;
-    inputData["nPagesData"]    = document.getElementById("nPages").value;
-    inputData["genreData"]     = document.getElementById("genre").value;
-    inputData["priceData"]     = document.getElementById("price").value;
-    inputData["pubDateData"]   = document.getElementById("pubDate").value;
-    // console.log(languagesData.value);
-    // console.log(inputData.languagesData.value);
-    // if(){}
-    // document.querySelector("input[value=Arabic]").checked = false;
-    // document.querySelector("input[value=English]").checked = false;
-    // document.querySelector("input[value=French]").checked = false;
-    // document.querySelector("input[value=Spanish]").checked = false;
+// check the empty input
+function errorMsg(labelId, inputId, spanId){   
+    targetInput = document.getElementById(inputId).value;
+    if(targetInput === ""){
+        spanId = document.getElementById(spanId)
+        spanId.innerText = "is required"
 
-    return inputData;
-}
-// =============== Get Data ===============
+        document.getElementById(labelId).style.color = "red";
+        document.getElementById(inputId).style.color = "black";
+        document.getElementById(inputId).style.border = "solid red";
+        document.getElementById(inputId).style.backgroundColor = "#f5c3c3"
+    } else if(targetInput.length > 30){
+        spanId = document.getElementById(spanId)
+        spanId.innerText = "cannot be more than 30 charachters"
 
+        document.getElementById(labelId).style.color = "red";
+        document.getElementById(inputId).style.color = "black";
+        document.getElementById(inputId).style.border = "solid red";
+        document.getElementById(inputId).style.backgroundColor = "#f5c3c3"
+    } else{
+        spanId = document.getElementById(spanId)
+        spanId.innerText = ""
 
-// =============== Fill Data Table ===============
-function fillDataTable(inputData){
-    var dataTable = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
-    // var dataTable = document.getElementById("dataTable").getElementsByTagName("tbody");
-    // var table = document.getElementById("storeList").getElementsByTagName('tbody')[0];
-    // var newRow = table.insertRow(table.length);
-    // var newRow = dataTable.insertRow(dataTable.length);
-    var newRow = dataTable.insertRow(dataTable.length);
-    
-    // authorCell
-    var AuthorCell = newRow.insertCell(0);
-        AuthorCell.innerHTML = inputData.authorData;
-    // publisherCell
-    var publisherCell = newRow.insertCell(1); 
-        publisherCell.innerHTML = inputData.publisherData;
-    // nPagesCell
-    var nPagesCell = newRow.insertCell(2);
-        nPagesCell.innerHTML = inputData.nPagesData;
-    // priceCell
-    var priceCell = newRow.insertCell(3);
-        // priceCell.innerHTML = "$" + inputData.priceData;
-        priceCell.innerHTML = inputData.priceData;
-
-    // copyTypeCell
-    var copyTypeCell = newRow.insertCell(4);
-        copyTypeCell.innerHTML = inputData.copyTypeData;
-    // languagesCell
-    var languagesCell = newRow.insertCell(5);
-        languagesCell.innerHTML = inputData.languagesData;
-    // genreCell
-    var genreCell = newRow.insertCell(6);
-        genreCell.innerHTML = inputData.genreData;
-    // pubDateCell
-    var pubDateCell = newRow.insertCell(7);
-        pubDateCell.innerHTML = inputData.pubDateData;
-    var editDelete = newRow.insertCell(8);
-        // editDelete.createElement("button").style.backgroundColor = "red";
-        editDelete.innerHTML = `<button class="edit" onclick="editData(this)">Edit</button> <button class="delete" onclick="deleteData(this)">Delete</button>`;
-}
-// =============== Fill Data Table ===============
-
-
-// =============== editData ===============
-function editData(td){
-    restStyle()
-
-    // document.getElementById("mainButton").innerText = "UPDATE";
-
-    selectedRow = td.parentElement.parentElement;
-
-    document.getElementById("author").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("publisher").value = selectedRow.cells[1].innerHTML;
-    document.getElementById("nPages").value = selectedRow.cells[2].innerHTML;    
-    document.getElementById("price").value = selectedRow.cells[3].innerHTML;
-    document.getElementById("copyType").value = selectedRow.cells[4].innerHTML;
-    document.getElementById("genre").value = selectedRow.cells[6].innerHTML;
-    document.getElementById("pubDate").value = selectedRow.cells[7].innerHTML;
-
-
-    if( selectedRow.cells[5].innerHTML == "Arabic"){
-        console.log("Arabic radio should be selected");
-        document.getElementById("arRadio").checked = true;
-    } else if(selectedRow.cells[5].innerHTML == "English"){
-        console.log("English radio should be selected");
-        document.getElementById("enRadio").checked = true;
-    }else if(selectedRow.cells[5].innerHTML == "French"){
-        console.log("French radio should be selected");
-        document.getElementById("frRadio").checked = true;
-    }else if(selectedRow.cells[5].innerHTML == "Spanish"){
-        console.log("Spanish radio should be selected");
-        document.getElementById("spRadio").checked = true;
+        document.getElementById(labelId).style.color = "";
+        document.getElementById(inputId).style.color = "";
+        document.getElementById(inputId).style.border = "";
+        document.getElementById(inputId).style.backgroundColor = ""
     }
 }
-// =============== editData ===============
+workTitleRTV = document.getElementById("workTitle");
+workTitleRTV.addEventListener('input', () => {
+    errorMsg('workLbl', 'workTitle', 'WTspanError')})
+authorNameRTV = document.getElementById("authorName");
+authorNameRTV.addEventListener('input', () => {
+    errorMsg('authorLbl', 'authorName', 'ANspanError')})
 
 
-// =============== updateData ===============
- function updateData(inputData){
-    selectedRow.cells[0].innerHTML = inputData.authorData;
-    selectedRow.cells[1].innerHTML = inputData.publisherData;
-    selectedRow.cells[2].innerHTML = inputData.nPagesData;
-    selectedRow.cells[3].innerHTML = inputData.priceData;
-    selectedRow.cells[4].innerHTML = inputData.copyTypeData;
-    selectedRow.cells[5].innerHTML = inputData.languagesData;
-    selectedRow.cells[6].innerHTML = inputData.genreData;
-    selectedRow.cells[7].innerHTML = inputData.pubDateData;
-    // selectedRow.cells[0].innerHTML = inputData.authorData;
-    // selectedRow.cells[1].innerHTML = inputData.copyTypeData;
-    // selectedRow.cells[2].innerHTML = inputData.publisherData;
-    // selectedRow.cells[3].innerHTML = inputData.languagesData;
-    // selectedRow.cells[4].innerHTML = inputData.nPagesData;
-    // selectedRow.cells[5].innerHTML = inputData.genreData;
-    // selectedRow.cells[6].innerHTML = inputData.priceData;
-    // selectedRow.cells[7].innerHTML = inputData.pubDateData;
-    // validation()
-    // document.getElementById("mainButton").innerText = "ADD";
 
-    // return("Update done")
-    // resetForm();
-    // restStyle()
-}
-// =============== updateData ===============
+function checkEmptyInput(){
+    var isEmpty = false,
 
+    workTitle = document.getElementById("workTitle").value,
+    authorName = document.getElementById("authorName").value,
+    price = document.getElementById("price").value;
+    pubDate = document.getElementById("pubDate").value;
+    languages = document.getElementById("languages").value;
+    genre = document.querySelector('input[name=genre]:checked');
+    radioChecker()
 
-// =============== deleteData ===============
-function deleteData(td){
-    if(confirm('Do you want to delete this record?')){
-        row = td.parentElement.parentElement;
-        document.getElementById('dataTable').deleteRow(row.rowIndex);
+    if(workTitle === "" || workTitle.length > 30){
+        // alert("First Name Connot Be Empty");
+        // errorMsg("work")
+        errorMsg('workLbl', 'workTitle', 'WTspanError')
+        isEmpty = true;
     }
-    
-    resetForm();
-    // alert("the form shoud be reset at this point")
-}
-// =============== deleteData ===============
-
-
-// =============== Reset Form ===============
-function resetForm(){
-    // const myform = document.getElementById("myForm");
-    // myform.reset();
-    // location.reload();
-
-    document.getElementById("author").value = '';
-    document.getElementById("copyType").value = '';
-    document.getElementById("publisher").value = '';
-        //  ******** Languages reset ******** 
-    document.querySelector("input[value=Arabic]").checked = false;
-    document.querySelector("input[value=English]").checked = false;
-    document.querySelector("input[value=French]").checked = false;
-    document.querySelector("input[value=Spanish]").checked = false;
-        //  ******** Languages reset ******** 
-    document.getElementById("nPages").value = '';
-    document.getElementById("genre").value = '';
-    document.getElementById("price").value = '';
-    document.getElementById("pubDate").value = '';
-
-    console.log("ResetForm is pressed");
-
-    restStyle()
-}
-
-        // ********** Reset Styling **********
-                function restStyle(){
-                // Author reset field
-                    authorMissed.innerText = "";
-                    authorMissed.style.color = "";
-                    authorLbl.style.color = "";
-                    author.style.border = "";
-                    author.style.backgroundColor = "";
-                
-                // ِCopytype reset field    
-                    copyTypeMissed.innerText = "";
-                    copyTypeMissed.style.color = "";
-                    copyTypeLbl.style.color = "";
-                    copyType.style.border = "";
-                    copyType.style.backgroundColor = "";
-            
-                // Publisher reset field    
-                    publisherMissed.innerText = "";
-                    publisherMissed.style.color = "";
-                    publisherLbl.style.color = "";
-                    publisher.style.border = "";
-                    publisher.style.backgroundColor = "";
-            
-                // Languages reset field    
-                    LanguagesMissed.innerText = "";
-                    LanguagesMissed.style.color = "";
-                    languagesLbl.style.color = "";
-                    LanguagesContainer.style.backgroundColor = "";
-                    LanguagesContainer.style.color = "";
-                    LanguagesContainer.style.border = "";
-            
-                // Number of pages reset field    
-                    nPagesMissed.innerText = "";
-                    nPagesMissed.style.color = "";
-                    nPagesLbl.style.color = "";
-                    nPages.style.border = "";
-                    nPages.style.backgroundColor = "";
-            
-                // Genre reset field    
-                    genreMissed.innerText = "";
-                    genreMissed.style.color = "";
-                    genreLbl.style.color = "";
-                    genre.style.border = "";
-                    genre.style.backgroundColor = "";
-            
-                // Price reset field    
-                    priceMissed.innerText = "";
-                    priceMissed.style.color = "";
-                    priceLbl.style.color = "";
-                    price.style.border = "";
-                    price.style.backgroundColor = "";
-            
-                // Publication date reset field    
-                    pubDateMissed.innerText = "";
-                    pubDateMissed.style.color = "";
-                    pubDateLbl.style.color = "";
-                    pubDate.style.border = "";
-                    pubDate.style.backgroundColor = "";
-                }
-        // ********** Reset Styling **********
-
- 
-// =============== Reset Form ===============
-
-
-// =============== VALIDATION ===============
-    function validation(){
-        // const form = document.getElementById("myForm");
-
-        // Author
-        const author = document.getElementById("author");
-        var authorMissed = document.getElementById("authorMissed");
-        var authorLbl = document.getElementById("authorLbl");
-        
-        authorValid = null; 
-        //variables without the [var] keyword, it becomes a global variable
-        if (author.value.trim() === "") {
-            authorMissed.innerText = "name missed";
-            authorMissed.style.color = "red";
-            authorLbl.style.color = "red";
-            author.style.border = "solid red";
-            author.style.backgroundColor = "#f5c3c3";
-
-            authorValid = false; 
-            console.log("authorValid is missed [" + authorValid +"]");
-        }else{
-            authorMissed.innerText = "";
-            // console.log(author.value);
-            authorLbl.style.color = "green";
-            author.style.border = "solid green";
-            author.style.backgroundColor = "#f5fff5";
-
-            console.log("the author is {" + author.value + "}");
-
-            authorValid = true;
-            console.log("authorValid is [" + authorValid +"]");
-        }
-    
-    //    Book copy type
-        const copyType = document.getElementById("copyType");
-        var copyTypeMissed = document.getElementById("copyTypeMissed");
-        var copyTypeLbl = document.getElementById("copyTypeLbl");
-
-        copyTypeValid = null;
-        if (copyType.value === "") {
-            copyTypeMissed.innerText = "not defined";
-            copyTypeMissed.style.color = "red";
-            copyTypeLbl.style.color = "red";
-            copyType.style.border = "solid red";
-            copyType.style.backgroundColor = "#f5c3c3";
-
-            copyTypeValid = false; 
-            console.log("copyTypeValid is not defined [" + copyTypeValid +"]");
-        }else{
-            copyTypeMissed.innerText = "";
-            copyTypeLbl.style.color = "green";
-            copyType.style.border = "solid green";
-            copyType.style.backgroundColor = "#f5fff5";
-
-            console.log("the copytype is {" + copyType.value + "}");
-
-            copyTypeValid = true;
-            console.log("copyTypeValid is [" + copyTypeValid +"]");
-        }
-
-    //    publisher
-        const publisher = document.getElementById("publisher");
-        var publisherMissed = document.getElementById("publisherMissed");
-        var publisherLbl = document.getElementById("publisherLbl");
-
-        publisherValid = null;
-        if (publisher.value === "") {
-            publisherMissed.innerText = "name is missed";
-            publisherMissed.style.color = "red";
-            publisherLbl.style.color = "red";
-            publisher.style.border = "solid red";
-            publisher.style.backgroundColor = "#f5c3c3";
-
-            publisherValid = false;
-            console.log("publisherValid is missed [" + publisherValid +"]");
-        }else{
-            publisherMissed.innerText = "";
-            publisherLbl.style.color = "green";
-            publisher.style.border = "solid green";
-            publisher.style.backgroundColor = "#f5fff5";
-
-            console.log("the publisher is {" + publisher.value + "}");
-
-            publisherValid = true;
-            console.log("publisherValid is [" + publisherValid +"]");
-
-        }
-
-        //    Languages
-        var LanguagesContainer = document.getElementById("LanguagesContainer");
-        var LanguagesMissed = document.getElementById("LanguagesMissed");
-        var languagesLbl = document.getElementById("languagesLbl");
-        // var langLabel = document.getElementById("langLabel");
-        // var langLabel = document.querySelectorAll("#langLabel");
-        // document.getElementById('summer').checked == true
-        // var languages = document.getElementsByTagName('languages').checked;
-        // var languages = document.querySelector('input[name="languages"]:checked');
-
-        languagesValid = null;
-        if (document.querySelector('input[name="languages"]:checked')) {
-            LanguagesMissed.innerText = "";
-            languagesLbl.style.color = "green";
-            LanguagesContainer.style.border = "solid green";
-            LanguagesContainer.style.backgroundColor = "#f5fff5";
-
-            console.log("the chosen language is {" + document.querySelector('input[name="languages"]:checked').value + "}");
-
-            languagesValid = true; 
-            console.log("languagesValid is [" + languagesValid +"]");
-        }else{
-            LanguagesMissed.innerText = "is not defined";
-            LanguagesMissed.style.color = "red";
-            languagesLbl.style.color = "red";
-            LanguagesContainer.style.backgroundColor = "#f5c3c3";
-            LanguagesContainer.style.color = "black";
-            LanguagesContainer.style.border = "solid red";
-
-            languagesValid = false;
-            console.log("languagesValid is not defined[" + languagesValid +"]");
-        }
-
-        // Number of pages
-        const nPages = document.getElementById("nPages");
-        var nPagesMissed = document.getElementById("nPagesMissed");
-        var nPagesLbl = document.getElementById("nPagesLbl");
-
-        nPagesValid = null;
-        if (nPages.value === "") {
-            nPagesMissed.innerText = "is not defined";
-            nPagesMissed.style.color = "red";
-            nPagesLbl.style.color = "red";
-            nPages.style.border = "solid red";
-            nPages.style.backgroundColor = "#f5c3c3";
-
-            nPagesValid = false; 
-            console.log("nPagesValid is not defined [" + nPagesValid +"]");
-        }else{
-            nPagesMissed.innerText = "";
-            nPagesLbl.style.color = "green";
-            nPages.style.border = "solid green";
-            nPages.style.backgroundColor = "#f5fff5";
-
-            console.log("the number of pages date is {" + nPages.value + "}");
-
-            nPagesValid = true;
-            console.log("nPagesValid is [" + nPagesValid +"]");
-        }
-
-        // Genre
-        const genre = document.getElementById("genre");
-        var genreMissed = document.getElementById("genreMissed");
-        var genreLbl = document.getElementById("genreLbl");
-
-        genreValid = null;
-        if (genre.value === "") {
-            genreMissed.innerText = "is not defined";
-            genreMissed.style.color = "red";
-            genreLbl.style.color = "red";
-            genre.style.border = "solid red";
-            genre.style.backgroundColor = "#f5c3c3";
-
-            genreValid = false; 
-            console.log("genreValid is not defined [" + genreValid +"]");
-        }else{
-            genreMissed.innerText = "";
-            genreLbl.style.color = "green";
-            genre.style.border = "solid green";
-            genre.style.backgroundColor = "#f5fff5";
-
-            console.log("the selected genre is {" + genre.value + "}");
-
-            genreValid = true;
-            console.log("genreValid is [" + genreValid +"]");
-        }
-
-        // Price
-        const price = document.getElementById("price");
-        var priceMissed = document.getElementById("priceMissed");
-        var priceLbl = document.getElementById("priceLbl");
-
-        priceValid = null;
-        if (price.value === "") {
-            priceMissed.innerText = "is not defined";
-            priceMissed.style.color = "red";
-            priceLbl.style.color = "red";
-            price.style.border = "solid red";
-            price.style.backgroundColor = "#f5c3c3";
-
-            priceValid = false; 
-
-            console.log("priceValid is not deinfed [" + priceValid +"]");
-        }else{
-            priceMissed.innerText = "";
-            priceLbl.style.color = "green";
-            price.style.border = "solid green";
-            price.style.backgroundColor = "#f5fff5";
-
-            console.log("the price value is {" + price.value + "$}");
-
-            priceValid = true;
-            console.log("priceValid is [" + priceValid +"]");
-        }
-
-        // Date
-        const pubDate = document.getElementById("pubDate");
-        var pubDateMissed = document.getElementById("pubDateMissed");
-        var pubDateLbl = document.getElementById("pubDateLbl");
-
-        pubDateValid = null;
-        if (pubDate.value === "") {
-            pubDateMissed.innerText = "is not defined";
-            pubDateMissed.style.color = "red";
-            pubDateLbl.style.color = "red";
-            pubDate.style.border = "solid red";
-            pubDate.style.backgroundColor = "#f5c3c3";
-
-            pubDateValid = false;
-            console.log("pubDateValid is not defined [" + pubDateValid +"]");
-        }else{
-            pubDateMissed.innerText = "";
-            pubDateLbl.style.color = "green";
-            pubDate.style.border = "solid green";
-            pubDate.style.backgroundColor = "#f5fff5";
-
-            console.log("the publication date is {" + pubDate.value + "}");
-
-            pubDateValid = true;
-            console.log("pubDateValid is [" + pubDateValid +"]");
-        }
-        
-
-
+    else if(authorName === ""){
+        // alert("Author name should not be empty or more than 30 charachters");
+        errorMsg('authorLbl', 'authorName', 'ANspanError')
+        isEmpty = true;
     }
-// =============== VALIDATION ===============
+    else if(price === ""){
+        alert("price Connot Be Empty");
+        isEmpty = true;
+    }
+    else if(pubDate === ""){
+        alert("pubDate Connot Be Empty");
+        isEmpty = true;
+    }
+    else if(languages === ""){
+        alert("languages Connot Be Empty");
+        isEmpty = true;
+    }
+    else if(!document.querySelector('input[name=genre]:checked')){
+        alert("genre Connot Be Empty");
+        isEmpty = true;
+    }
+    return isEmpty;
+}
 
+// add Row
+function addHtmlTableRow()
+{
+// get the table by id
+// create a new row and cells
+// get value from input text
+// set the values into row cell's
+    if(!checkEmptyInput())
+    {
+        var newRow = table.insertRow(table.length),
+            cell1 = newRow.insertCell(0),
+            cell2 = newRow.insertCell(1),
+            cell3 = newRow.insertCell(2),
+            cell4 = newRow.insertCell(3),
+            cell5 = newRow.insertCell(4),
+            cell6 = newRow.insertCell(5),
+            // cell7 = newRow.insertCell(6),
+            workTitle = document.getElementById("workTitle").value,
+            authorName = document.getElementById("authorName").value,
+            price = document.getElementById("price").value;
+            pubDate = document.getElementById("pubDate").value;
+            languages = document.getElementById("languages").value;
+            genre = document.querySelector('input[name=genre]:checked').value;
+            // remove = `<button id="RemoveBr" type="button" onclick="removeThisRow(this);">Remove</button>`;
+
+        cell1.innerHTML = workTitle;
+        cell2.innerHTML = authorName;
+        cell3.innerHTML = price;
+        cell4.innerHTML = pubDate;
+        cell5.innerHTML = languages;
+        cell6.innerHTML = genre;
+        // cell7.innerHTML = remove;
+
+        // call the function to set the event to the new row
+        selectedRowToInput();
+        resetInput()
+        // document.getElementById("EditBr").style.display = "block";
+        // document.getElementById("RemoveBr").style.display = "block";
+    }
+}
+
+// display selected row data into input text
+
+function selectedRowToInput()
+{
+for(var i = 1; i < table.rows.length; i++)
+{
+    table.rows[i].onclick = function()
+    {
+        // get the seected row index
+        rIndex = this.rowIndex;
+        document.getElementById("workTitle").value = this.cells[0].innerHTML;
+        document.getElementById("authorName").value = this.cells[1].innerHTML;
+        document.getElementById("price").value = this.cells[2].innerHTML;
+        document.getElementById("pubDate").value = this.cells[3].innerHTML;
+        document.getElementById("languages").value = this.cells[4].innerHTML;
+
+        if( this.cells[5].innerHTML == "Novel"){
+            console.log("Novel radio should be selected");
+            document.getElementById('Novel').checked = true;
+        } else if(this.cells[5].innerHTML == "Essay"){
+            console.log("Essay radio should be selected");
+            document.getElementById('Essay').checked = true;
+        }else if(this.cells[5].innerHTML == "Comic"){
+            console.log("Comic radio should be selected");
+            document.getElementById('Comic').checked = true;
+        }
+        document.getElementById("Add").style.display = "none";
+        document.getElementById("Update").style.display = "block";
+        document.getElementById("Remove").style.display = "block";
+    };
+}
+}
+
+selectedRowToInput();
+
+function updateHtmlTbleSelectedRow()
+{
+var workTitle = document.getElementById("workTitle").value,
+    authorName = document.getElementById("authorName").value,
+    price = document.getElementById("price").value;
+    pubDate = document.getElementById("pubDate").value;
+    languages = document.getElementById("languages").value;
+
+if(!checkEmptyInput())
+{
+    table.rows[rIndex].cells[0].innerHTML = workTitle;
+    table.rows[rIndex].cells[1].innerHTML = authorName;
+    table.rows[rIndex].cells[2].innerHTML = price;
+    table.rows[rIndex].cells[3].innerHTML = pubDate;
+    table.rows[rIndex].cells[4].innerHTML = languages;
+    table.rows[rIndex].cells[5].innerHTML = document.querySelector('input[name=genre]:checked').value;
+}
+
+resetInput()
+document.getElementById("Add").style.display = "block";
+document.getElementById("Update").style.display = "none";
+document.getElementById("Remove").style.display = "none";
+}
+
+function removeSelectedRow()
+{
+table.deleteRow(rIndex);
+// table.deleteRow(document.getElementById("table").rows.rowIndex);
+// table.deleteRow(1);
+// table.deleteRow(-1);
+
+// clear input text
+resetInput()
+document.getElementById("Add").style.display = "block";
+document.getElementById("Update").style.display = "none";
+document.getElementById("Remove").style.display = "none";
+}
+
+function resetInput()
+{
+// clear input text
+document.getElementById("workTitle").value = "";
+document.getElementById("authorName").value = "";
+document.getElementById("price").value = "";
+document.getElementById("pubDate").value = "";
+document.getElementById("languages").value = "";
+document.querySelector("input[value=Novel]").checked = false;
+document.querySelector("input[value=Essay]").checked = false;
+document.querySelector("input[value=Comic]").checked = false;
+}

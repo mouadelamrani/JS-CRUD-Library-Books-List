@@ -1,130 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Library Manager</title>
-</head>
-<body>
-    <!-- Start Form Container -->    
-        <section class="container">
-            <form id="myForm" autocomplete="off">
-                    <!-- Author -->
-                    <label id="authorLbl" for="Author">Author
-                        <span id="authorMissed" class="errorMsg"></span>
-                        <input id="author" type="text" placeholder="Author" value="Author">
-                    </label>
-
-                    <!-- Publisher -->
-                    <label id="publisherLbl" for="Publisher">Publisher
-                        <span id="publisherMissed" class="errorMsg"></span>
-                        <input id="publisher" type="text" placeholder="Publisher" value="Publisher">
-                    </label>
-
-                    <!-- Number of pages -->
-                    <label id="nPagesLbl" for="nPages">Number of Pages
-                        <span id="nPagesMissed" class="errorMsg"></span>
-                        <input id="nPages" type="number" placeholder="Number of Pages"value="10">
-                    </label>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <title>Library Manager</title>
+    </head>
+    <body>
+        <div class="fromContainer">
+            <form autocomplete="off">
+                    <!-- Work Title -->
+                        <label id="workLbl">Work Title
+                            <span id="WTspanError" class="spanErrorClass"></span><br>
+                            <input type="text" name="workTitle" id="workTitle" value="test" placeholder="i.e Robinson Cruseo"><br>
+                        </label>
+    
+                    <!-- Author Name -->
+                        <label id="authorLbl">Author Name
+                            <span id="ANspanError" class="spanErrorClass"></span><br>
+                            <input type="text" name="authorName" id="authorName" value="test" placeholder="i.e Daniel Defoe">
+                        </label>
 
                     <!-- Price -->
-                    <label id="priceLbl" for="Price">Price
-                        <span id="priceMissed" class="errorMsg"></span>
-                        <input id="price" type="number" placeholder="Price" value="20">
-                    </label>
+                        <label >Price</br>
+                            <span></span>
+                            <input type="text" name="price" id="price" value="test">
+                        </label>
 
-                    <!-- Book Copytype -->
-                    <label id="copyTypeLbl" for="copyType">Book Copytype
-                        <span id="copyTypeMissed" class="errorMsg"></span>
-                        <select id="copyType" name="copyType">
-                            <option value="" disabled selected>Select your copytype</option>
-                            <option value="Hardcover">Hardcover</option>
-                            <option value="Softcover">Softcover</option>
-                        </select>
-                    </label>
+                    <!-- Publishing Date -->
+                        <label>Publishing Date</br>
+                            <span></span>
+                            <input type="date" name="pubDate" id="pubDate" value="2014-02-09">
+                        </label>
 
-                    <!-- Languages -->
-                    <label id="languagesLbl" for="languages">Language
-                        <span id="LanguagesMissed" class="errorMsg"></span>
-                        <div id="LanguagesContainer">
-                            <label id="langLabel" for="arabic">
-                                <input id="arRadio" type="radio" value="Arabic" name="languages" checked>
-                                <span>Arabic</span>
+                    <!-- Language -->
+                        <label>Language</br>
+                            <span></span>
+                            <select name="languages" id="languages">
+                                <option value="" disabled>Select the book language</option>
+                                <option value="Arabic" selected>Arabic</option>
+                                <option value="French">French</option>
+                                <option value="English">English</option>
+                            </select>
+                        </label>
+
+                    <!-- Genre -->
+                    <label id="genreLbl" for="genre">Genre
+                        <div id="genreContainer">
+                            <label for="Novel" class="genreLbl">
+                                <input type="radio" id="Novel" value="Novel" name="genre"><span>Novel</span>    
                             </label>
-                            <label id="langLabel" for="English">
-                                <input id="enRadio" type="radio" value="English" name="languages">
-                                <span>English</span>
+                    
+                            <label for="Essay" class="genreLbl">
+                                <input type="radio" id="Essay" value="Essay" name="genre"><span>Essay</span>    
                             </label>
-                            <label id="langLabel" for="French">
-                                <input id="frRadio" type="radio" value="French" name="languages">
-                                <span>French</span>
-                            </label>
-                            <label id="langLabel" for="Spanish">
-                                <input id="spRadio" type="radio" value="Spanish" name="languages">
-                                <span>Spanish</span>
+                    
+                            <label for="Comic" class="genreLbl">
+                                <input type="radio" id="Comic" value="Comic" name="genre" checked><span>Comic</span>
                             </label>
                         </div>
                     </label>
-                    
-                    <!-- Genre -->
-                    <label id="genreLbl" for="Genre">Genre
-                        <span id="genreMissed" class="errorMsg"></span>
-                        <select id="genre" name="Genre">
-                            <option value="" disabled selected>Select the book genre</option>
-                            <option value="Action">Action</option>
-                            <option value="Classics">Classics</option>
-                            <option value="Detective">Detective</option>
-                            <option value="Psychology">Psychology</option>
-                            <option value="Fantasy">Fantasy</option>
-                        </select>
-                    </label>
-                    
-                    <!-- Publishing Date -->
-                    <label id="pubDateLbl" for="pubDate">Publishing Date
-                        <span id="pubDateMissed" class="errorMsg"></span>
-                        <input id="pubDate" type="date" name="publishing date" value = "2014-02-09";>
-                    </label>
-            </form>
-            <button id="mainButton" class="Submit" type="button" onclick="libraryManager()">
-                SUBMIT
-            </button>
-            <button id="mainButton" type="button" onclick="editRow()">
-                update
-            </button>
-            <button type="button" onclick="resetForm()">
-                RESET
-            </button>
-        </section>
-    <!-- End Form Container -->
+                    <br>
+                    <button id="Add" type="button" onclick="addHtmlTableRow();">Add</button>
+                    <button id="Update" type="button" onclick="updateHtmlTbleSelectedRow();">Update</button>
+                    <button id="Remove" type="button" onclick="removeSelectedRow();">Remove</button>
+                </form>
+            </div>
 
-
-    <table class="dataTable" id="dataTable">
-        <thead>
+        <table id="table" border="1">
             <tr>
+                <th>Work Title</th>
                 <th>Author</th>
-                <th>Publisher</th>
-                <th>Number of pages</th>
                 <th>Price</th>
-                <th>Book copytype</th>
+                <th>Date</th>
                 <th>Language</th>
                 <th>Genre</th>
-                <th>Publishing date</th>
-                <th>Actions</th>
+                <!-- <th>buttons</th> -->
             </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
-
-
-
-
+            <tr>
+                <td>A1</td>
+                <td>B1</td>
+                <td>10</td>
+                <td>2019-02-09</td>
+                <td>English</td>
+                <td>Comic</td>
+                <!-- <td><button>Button</button></td> -->
+            </tr>
+            <tr>
+                <td>A3</td>
+                <td>B3</td>
+                <td>30</td>
+                <td>2012-02-09</td>
+                <td>French</td>
+                <td>Essay</td>
+                <!-- <td><button>Button</button></td> -->
+            </tr>
+            <tr>
+                <td>A2</td>
+                <td>B2</td>
+                <td>20</td>
+                <td>2020-02-09</td>
+                <td>Arabic</td>
+                <td>Comic</td>
+                <!-- <td><button>Button</button></td> -->
+            </tr>
+        </table>   
+        <br>    
+    </body>
     <script src="script.js"></script>
-</body>
 </html>
