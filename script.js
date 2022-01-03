@@ -51,6 +51,7 @@ function errorMsg(labelId, inputId, spanId){
 workTitleRTV = document.getElementById("workTitle");
 workTitleRTV.addEventListener('input', () => {
     errorMsg('workLbl', 'workTitle', 'WTspanError')})
+
 authorNameRTV = document.getElementById("authorName");
 authorNameRTV.addEventListener('input', () => {
     errorMsg('authorLbl', 'authorName', 'ANspanError')})
@@ -224,3 +225,33 @@ document.querySelector("input[value=Novel]").checked = false;
 document.querySelector("input[value=Essay]").checked = false;
 document.querySelector("input[value=Comic]").checked = false;
 }
+
+
+// dateRTV = document.getElementById("pubDate").value;
+// console.log(dateRTV)
+// dateRTV.addEventListener('input', () => {
+//     errorMsg('dateLbl', 'pubDate', 'dateSpanError')})
+
+// +++++++++++++++++++++++++++++++++++++++++++
+// I should make the regular expression work for the date and the price! 
+// I should define the usage of the regex and how to implement it correctly
+function validDate(){
+    dateValue = document.getElementById("pubDate").value
+    dateRegEx = /^((0[1-9]|[12][012345678]|19)\-(0[1-9]|1[012])|29\.(0[13-9]|1[012])|30\.(0[13-9]|1[012])|31\.(0[13578]|1[02]))\-(19|20)\d\d|29\.02\.(19|20)([02468][048]|[13579][26])$/gm
+    
+        console.log(dateRegEx.test(dateValue));
+
+        if(dateRegEx.test(dateValue)){
+            console.log("reg ex works good");
+
+        } else{
+            console.log("reg ex doesn't work :/");
+        }
+
+}
+
+// validDate("2014-02-09")
+validDate()
+
+// +++++++++++++++++++++++++++++++++++++++++++
+

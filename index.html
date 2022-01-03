@@ -32,9 +32,18 @@
                         </label>
 
                     <!-- Publishing Date -->
-                        <label>Publishing Date</br>
-                            <span></span>
+                        <!-- <label id="dateLbl">Publishing Date
+                            <span id="dateSpanError" class="spanErrorClass"></span><br>
                             <input type="date" name="pubDate" id="pubDate" value="2014-02-09">
+                        </label> -->
+
+                        <label id="newDateLbl">Publishing Date
+                            <span id="newDateSpanError" class="spanErrorClass"></span><br>
+                            <label id="newDateContainer">
+                                <input type="text" id="DD" placeholder="DD" maxlength="2"> /
+                                <input type="text" id="MM" placeholder="MM" maxlength="2"> /
+                                <input type="text" id="YYYY" placeholder="YYYY" maxlength="4">
+                            </label>
                         </label>
 
                     <!-- Language -->
