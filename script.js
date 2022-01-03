@@ -19,7 +19,7 @@ function radioChecker(){
 
 var rIndex, table = document.getElementById("table");
 
-// check the empty input
+// check the empty input ==> works for {worktitle}{authorName}
 function errorMsg(labelId, inputId, spanId){   
     targetInput = document.getElementById(inputId).value;
     if(targetInput === ""){
@@ -48,6 +48,7 @@ function errorMsg(labelId, inputId, spanId){
         document.getElementById(inputId).style.backgroundColor = ""
     }
 }
+
 workTitleRTV = document.getElementById("workTitle");
 workTitleRTV.addEventListener('input', () => {
     errorMsg('workLbl', 'workTitle', 'WTspanError')})
@@ -58,6 +59,8 @@ authorNameRTV.addEventListener('input', () => {
 
 
 
+
+// Check is the input is empty
 function checkEmptyInput(){
     var isEmpty = false,
 
@@ -135,13 +138,15 @@ function addHtmlTableRow()
         // call the function to set the event to the new row
         selectedRowToInput();
         resetInput()
+        validDate()
+
         // document.getElementById("EditBr").style.display = "block";
         // document.getElementById("RemoveBr").style.display = "block";
     }
 }
 
-// display selected row data into input text
 
+// display selected row data into input text
 function selectedRowToInput()
 {
 for(var i = 1; i < table.rows.length; i++)
@@ -227,31 +232,8 @@ document.querySelector("input[value=Comic]").checked = false;
 }
 
 
-// dateRTV = document.getElementById("pubDate").value;
-// console.log(dateRTV)
-// dateRTV.addEventListener('input', () => {
-//     errorMsg('dateLbl', 'pubDate', 'dateSpanError')})
-
 // +++++++++++++++++++++++++++++++++++++++++++
 // I should make the regular expression work for the date and the price! 
 // I should define the usage of the regex and how to implement it correctly
-function validDate(){
-    dateValue = document.getElementById("pubDate").value
-    dateRegEx = /^((0[1-9]|[12][012345678]|19)\-(0[1-9]|1[012])|29\.(0[13-9]|1[012])|30\.(0[13-9]|1[012])|31\.(0[13578]|1[02]))\-(19|20)\d\d|29\.02\.(19|20)([02468][048]|[13579][26])$/gm
-    
-        console.log(dateRegEx.test(dateValue));
 
-        if(dateRegEx.test(dateValue)){
-            console.log("reg ex works good");
-
-        } else{
-            console.log("reg ex doesn't work :/");
-        }
-
-}
-
-// validDate("2014-02-09")
-validDate()
-
-// +++++++++++++++++++++++++++++++++++++++++++
 

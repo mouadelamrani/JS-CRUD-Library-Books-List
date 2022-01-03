@@ -32,19 +32,35 @@
                         </label>
 
                     <!-- Publishing Date -->
-                        <!-- <label id="dateLbl">Publishing Date
+                        <label id="dateLbl">Publishing Date
                             <span id="dateSpanError" class="spanErrorClass"></span><br>
-                            <input type="date" name="pubDate" id="pubDate" value="2014-02-09">
-                        </label> -->
+                            <input placeholder="dd/mm/yyyy" type="date" name="pubDate" id="pubDate" value="2014-02-09" min="1500-00-0" max="2099-01-01">
+                        </label>
 
                         <label id="newDateLbl">Publishing Date
                             <span id="newDateSpanError" class="spanErrorClass"></span><br>
                             <label id="newDateContainer">
-                                <input type="text" id="DD" placeholder="DD" maxlength="2"> /
-                                <input type="text" id="MM" placeholder="MM" maxlength="2"> /
-                                <input type="text" id="YYYY" placeholder="YYYY" maxlength="4">
+                                <input type="number" id="DD" placeholder="DD" maxlength="2"> /
+                                <!-- <input type="text" id="MM" placeholder="MM" maxlength="2">  -->
+                                <select name="MM" id="MM">
+                                    <option value="January" selected>January</option>
+                                    <option value="February">February</option>
+                                    <option value="Mars">Mars</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="Novermber">Novermber</option>
+                                    <option value="December">December</option>
+                                </select>/
+                                <input type="number" id="YYYY" placeholder="YYYY" maxlength="4">
                             </label>
                         </label>
+
+                        
 
                     <!-- Language -->
                         <label>Language</br>
