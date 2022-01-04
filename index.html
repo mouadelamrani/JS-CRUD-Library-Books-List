@@ -13,82 +13,87 @@
     <body>
         <div class="fromContainer">
             <form autocomplete="off">
-                    <!-- Work Title -->
-                        <label id="workLbl">Work Title
-                            <span id="WTspanError" class="spanErrorClass"></span><br>
-                            <input type="text" name="workTitle" id="workTitle" value="test" placeholder="i.e Robinson Cruseo"><br>
-                        </label>
-    
-                    <!-- Author Name -->
-                        <label id="authorLbl">Author Name
-                            <span id="ANspanError" class="spanErrorClass"></span><br>
-                            <input type="text" name="authorName" id="authorName" value="test" placeholder="i.e Daniel Defoe">
-                        </label>
-
-                    <!-- Price -->
-                        <label >Price</br>
-                            <span></span>
-                            <input type="text" name="price" id="price" value="test">
-                        </label>
-
-                    <!-- Publishing Date -->
-                        <label id="dateLbl">Publishing Date
-                            <span id="dateSpanError" class="spanErrorClass"></span><br>
-                            <input placeholder="dd/mm/yyyy" type="date" name="pubDate" id="pubDate" value="2014-02-09" min="1500-00-0" max="2099-01-01">
-                        </label>
-
-                        <label id="newDateLbl">Publishing Date
-                            <span id="newDateSpanError" class="spanErrorClass"></span><br>
-                            <label id="newDateContainer">
-                                <input type="number" id="DD" placeholder="DD" maxlength="2"> /
-                                <!-- <input type="text" id="MM" placeholder="MM" maxlength="2">  -->
-                                <select name="MM" id="MM">
-                                    <option value="January" selected>January</option>
-                                    <option value="February">February</option>
-                                    <option value="Mars">Mars</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="Novermber">Novermber</option>
-                                    <option value="December">December</option>
-                                </select>/
-                                <input type="number" id="YYYY" placeholder="YYYY" maxlength="4">
+                <div class="sidesConatiner">
+                    <label for="leftSide" class="leftSide">
+                        <!-- Work Title -->
+                            <label id="workLbl">Work Title
+                                <span id="WTspanError" class="spanErrorClass"></span><br>
+                                <input type="text" name="workTitle" id="workTitle" value="test" placeholder="i.e Robinson Cruseo"><br>
                             </label>
-                        </label>
-
-                        
-
-                    <!-- Language -->
-                        <label>Language</br>
-                            <span></span>
-                            <select name="languages" id="languages">
-                                <option value="" disabled>Select the book language</option>
-                                <option value="Arabic" selected>Arabic</option>
-                                <option value="French">French</option>
-                                <option value="English">English</option>
-                            </select>
-                        </label>
-
-                    <!-- Genre -->
-                    <label id="genreLbl" for="genre">Genre
-                        <div id="genreContainer">
-                            <label for="Novel" class="genreLbl">
-                                <input type="radio" id="Novel" value="Novel" name="genre"><span>Novel</span>    
+        
+                        <!-- Author Name -->
+                            <label id="authorLbl">Author Name
+                                <span id="ANspanError" class="spanErrorClass"></span><br>
+                                <input type="text" name="authorName" id="authorName" value="test" placeholder="i.e Daniel Defoe">
                             </label>
-                    
-                            <label for="Essay" class="genreLbl">
-                                <input type="radio" id="Essay" value="Essay" name="genre"><span>Essay</span>    
+
+                        <!-- Price -->
+                            <label >Price</br>
+                                <span></span>
+                                <input type="text" name="price" id="price" value="test">
                             </label>
-                    
-                            <label for="Comic" class="genreLbl">
-                                <input type="radio" id="Comic" value="Comic" name="genre" checked><span>Comic</span>
-                            </label>
-                        </div>
                     </label>
+
+                    <label for="rightSide" class="rightSide">
+                        <!-- Publishing Date -->
+                            <label id="dateLbl">Publishing Date
+                                <span id="dateSpanError" class="spanErrorClass"></span><br>
+                                <input placeholder="dd/mm/yyyy" type="date" name="pubDate" id="pubDate" value="2014-02-09" min="1500-00-0" max="2099-01-01">
+                            </label>
+
+                            <label id="newDateLbl">Publishing Date
+                                <span id="newDateSpanError" class="spanErrorClass"></span><br>
+                                <label id="newDateContainer">
+                                    <input type="number" id="DD" placeholder="Day" maxlength="3"> /
+                                    <!-- <input type="text" id="MM" placeholder="MM" maxlength="2">  -->
+                                    <select name="MM" id="MM">
+                                        <option value="" disabled selected>Month</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="Mars">Mars</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="Novermber">Novermber</option>
+                                        <option value="December">December</option>
+                                    </select>/
+                                    <input type="number" id="YYYY" placeholder="Year" maxlength="4">
+                                </label>
+                            </label>
+
+                        <!-- Language -->
+                            <label>Language</br>
+                                <span></span>
+                                <select name="languages" id="languages">
+                                    <option value="" disabled>Select the book language</option>
+                                    <option value="Arabic" selected>Arabic</option>
+                                    <option value="French">French</option>
+                                    <option value="English">English</option>
+                                </select>
+                            </label>
+
+                        <!-- Genre -->
+                            <label id="genreLbl" for="genre">Genre
+                                <div id="genreContainer">
+                                    <label for="Novel" class="genreLbl">
+                                        <input type="radio" id="Novel" value="Novel" name="genre"><span>Novel</span>    
+                                    </label>
+                            
+                                    <label for="Essay" class="genreLbl">
+                                        <input type="radio" id="Essay" value="Essay" name="genre"><span>Essay</span>    
+                                    </label>
+                            
+                                    <label for="Comic" class="genreLbl">
+                                        <input type="radio" id="Comic" value="Comic" name="genre" checked><span>Comic</span>
+                                    </label>
+                                </div>
+                            </label>
+                    </label>
+                </div>
                     <br>
                     <button id="Add" type="button" onclick="addHtmlTableRow();">Add</button>
                     <button id="Update" type="button" onclick="updateHtmlTbleSelectedRow();">Update</button>

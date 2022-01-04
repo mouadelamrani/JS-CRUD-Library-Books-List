@@ -12,18 +12,33 @@ html, body, *{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 0 15%;
+    /* padding: 0 15%; */
     gap: 20px;
 }
 form{
     width: 100%;
-        /* background-color: aqua; */
-        display: grid;
-        align-items: center;
-        grid-template-columns: repeat(2, 1fr);
-        /* justify-items: center; */
-        gap: 10px;
+    /* max-width: 400px; */
+    /* background-color: aqua; */
+    /* display: grid; */
+    align-items: center;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* justify-items: center; */
+    gap: 10px;
+    padding: 0 10%;
+
 }
+.sidesConatiner{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.leftSide, .rightSide{
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 10px ;
+}
+
 table tr:not(:first-child), td:not(last-child){
     cursor: pointer;
     transition: all .25s ease-in-out;
@@ -120,29 +135,30 @@ input:focus{
     border: 2px solid blue;
     outline: 0;
     /* outline-color: blue; */
-    transition: all .1s ease-in-out;
+    transition: all .25s ease-in-out;
     background-color: rgba(0, 0, 255, 0.03);
 }
 select:focus{
     border: 2px solid blue;
     outline: 0;
     /* outline-color: blue; */
-    transition: all .1s ease-in-out;
+    transition: all .25s ease-in-out;
     background-color: rgba(0, 0, 255, 0.03);
 }
 
-#genreContainer:focus-within{
+#genreContainer:focus-within, #newDateContainer:focus-within{
     border: 1px solid rgba(0, 0, 255, 0.356);
     outline: 0;
     /* outline-color: blue; */
-    transition: all .1s ease-in-out;
+    transition: all .25s ease-in-out;
     background-color: rgba(0, 0, 255, 0.03);
 }
-select:hover, input:hover, #genreContainer:hover {
+
+select:hover, input:hover, #genreContainer:hover, #newDateContainer:hover {
     border: 1px solid blue;
     outline: 0;
     /* outline-color: blue; */
-    /* transition: all .1s ease-in-out; */
+    /* transition: all .25s ease-in-out; */
     /* background-color: rgba(0, 0, 255, 0.03); */
 }
 
@@ -154,10 +170,12 @@ button{
     cursor: pointer;
     border-radius: 5px;
     border: .5px solid grey;
+    transition: all .25s ease-in-out;
+
 }
 
 button:hover{
-    transition: all .1s ease-in-out;
+    transition: all .25s ease-in-out;
 }
 
 #Add{
@@ -184,7 +202,7 @@ button:hover{
     border: .5px solid red;
     background-color: rgba(255, 0, 0, 0.6);
     color: white;
-    transition: all .1s ease-in-out;
+    transition: all .25s ease-in-out;
 }
 
 #Update, #Remove{
@@ -199,8 +217,8 @@ button:hover{
 #newDateContainer{
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 15px;
+    justify-content: space-between;
+    gap: 10px;
     
     padding: 0 10px 0 10px;
     width: 100%;
@@ -211,23 +229,45 @@ button:hover{
 
 /* I should remove hover effect from these inputs */
 #DD{
-    max-width: 80px;
+    max-width: 100px;
+    padding: 0 30px;
     border: none;
-    height: fit-content;
-
+    height: 80%;
+    background-color: transparent;
+    text-align: center;
 }
 #MM{
     max-width: 150px;
+    padding: 0 1px;
     border: none;
-    height: fit-content;
-
+    height: 80%;
+    background-color: transparent;
+    text-align: center;
 }
 #YYYY{
-    max-width: 160px;
+    max-width: 130px;
+    padding: 0 10px;
     border: none;
-    height: fit-content;
     padding: 0;
     margin: 0;
+    height: 80%;
+    background-color: transparent;
+    text-align: center;
+}
+
+#MM:hover, #YYYY:hover, #DD:hover {
+    border: 1px solid transparent;
+    outline: 0;
+    /* border-bottom: 1px solid grey; */
+    /* outline-color: blue; */
+    /* transition: all .25s ease-in-out; */
+    /* background-color: rgba(0, 0, 255, 0.03); */
+}
+
+#DD:focus, #MM:focus, #YYYY:focus{
+    background-color: rgba(224, 255, 255, 0.089);
+    border: 1px solid darkgray;
+    transition: all .25s ease-in-out;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -236,10 +276,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
-/* MM
-YYYY */
