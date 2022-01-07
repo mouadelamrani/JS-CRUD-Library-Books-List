@@ -1,0 +1,6 @@
+I have linked the date inputs with js
+
+next step: 
+  - Show error message when the user inputs something against
+  the a low year (i.e 1000), or (more than 31 in days)
+  - 

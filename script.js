@@ -1,3 +1,6 @@
+
+
+
 function radioChecker(){
     if(document.getElementById('Novel').checked) {   
      console.log(document.getElementById("Novel").value + " radio button is checked");   
@@ -57,6 +60,48 @@ authorNameRTV = document.getElementById("authorName");
 authorNameRTV.addEventListener('input', () => {
     errorMsg('authorLbl', 'authorName', 'ANspanError')})
 
+dd = document.getElementById("DD");
+dd.addEventListener('input', () => {
+    errorMsg('newDateLbl', 'DD', 'newDateSpanError')})
+
+// Month message error NOT COMLETED (make everything red about the date)
+mm = document.getElementById("MM");
+mm.addEventListener('change', () => {
+    // errorMsg('newDateLbl', 'MM', 'newDateSpanError')
+    // mmQuery = document.querySelectorAll("select").value;
+    mmQuery = document.getElementById("MM").value;
+    console.log(mmQuery);
+    if(mmQuery == ""){
+        spanId = document.getElementById("newDateSpanError")
+        spanId.innerText = "is required"
+
+        document.getElementById("newDateLbl").style.color = "red";
+        document.getElementById("MM").style.color = "black";
+        document.getElementById("MM").style.border = "solid red";
+        document.getElementById("MM").style.backgroundColor = "#f5c3c3"
+        console.log("mmQuerry is true, styles should show up");
+
+        
+    } else{
+        spanId = document.getElementById("newDateSpanError")
+        spanId.innerText = ""
+
+        document.getElementById("newDateLbl").style.color = "";
+        document.getElementById("MM").style.color = "";
+        document.getElementById("MM").style.border = "";
+        document.getElementById("MM").style.backgroundColor = ""
+
+        console.log("mmQuerry is false");
+
+    }
+})
+
+
+yyyy = document.getElementById("YYYY");
+yyyy.addEventListener('input', () => {
+    errorMsg('newDateLbl', 'YYYY', 'newDateSpanError')})
+
+
 
 
 
@@ -67,9 +112,12 @@ function checkEmptyInput(){
     workTitle = document.getElementById("workTitle").value,
     authorName = document.getElementById("authorName").value,
     price = document.getElementById("price").value;
-    pubDate = document.getElementById("pubDate").value;
+    // pubDate = document.getElementById("pubDate").value;
     languages = document.getElementById("languages").value;
     genre = document.querySelector('input[name=genre]:checked');
+    dd = document.getElementById("DD").value;
+    mm = document.getElementById("MM").value;
+    yyyy = document.getElementById("YYYY").value;
     radioChecker()
 
     if(workTitle === "" || workTitle.length > 30){
@@ -87,10 +135,28 @@ function checkEmptyInput(){
         alert("price Connot Be Empty");
         isEmpty = true;
     }
-    else if(pubDate === ""){
-        alert("pubDate Connot Be Empty");
+
+    // date condition
+    else if(
+        dd == "" && mm == "" || 
+        dd == "" && yyyy == "" || 
+        mm == "" && yyyy == ""){
+        alert("Day, Month, and year must be filled");
         isEmpty = true;
     }
+    else if(dd == ""){
+        alert("Day Connot Be Empty");
+        isEmpty = true;
+    }
+    else if(mm ==""){
+        alert("Month Connot Be Empty");
+        isEmpty = true;
+    }
+    else if(yyyy == ""){
+        alert("Year Connot Be Empty");
+        isEmpty = true;
+    }
+    // languages condition
     else if(languages === ""){
         alert("languages Connot Be Empty");
         isEmpty = true;
@@ -122,15 +188,22 @@ function addHtmlTableRow()
             workTitle = document.getElementById("workTitle").value,
             authorName = document.getElementById("authorName").value,
             price = document.getElementById("price").value;
-            pubDate = document.getElementById("pubDate").value;
+            // pubDate = document.getElementById("pubDate").value;
             languages = document.getElementById("languages").value;
             genre = document.querySelector('input[name=genre]:checked').value;
             // remove = `<button id="RemoveBr" type="button" onclick="removeThisRow(this);">Remove</button>`;
+            // New date value
+            dd = document.getElementById("DD").value;
+            mm = document.getElementById("MM").value;
+            yyyy = document.getElementById("YYYY").value;
+            console.log("The new date is: " + dd + "/" + mm  + "/" + yyyy);
+            newDate = + dd + "/" + mm  + "/" + yyyy;
 
         cell1.innerHTML = workTitle;
         cell2.innerHTML = authorName;
         cell3.innerHTML = price;
-        cell4.innerHTML = pubDate;
+        // cell4.innerHTML = pubDate;
+        cell4.innerHTML = newDate;
         cell5.innerHTML = languages;
         cell6.innerHTML = genre;
         // cell7.innerHTML = remove;
@@ -138,7 +211,7 @@ function addHtmlTableRow()
         // call the function to set the event to the new row
         selectedRowToInput();
         resetInput()
-        validDate()
+        // validDate()
 
         // document.getElementById("EditBr").style.display = "block";
         // document.getElementById("RemoveBr").style.display = "block";
@@ -158,9 +231,55 @@ for(var i = 1; i < table.rows.length; i++)
         document.getElementById("workTitle").value = this.cells[0].innerHTML;
         document.getElementById("authorName").value = this.cells[1].innerHTML;
         document.getElementById("price").value = this.cells[2].innerHTML;
-        document.getElementById("pubDate").value = this.cells[3].innerHTML;
+        // document.getElementById("pubDate").value = this.cells[3].innerHTML;
         document.getElementById("languages").value = this.cells[4].innerHTML;
 
+        // New date Condition
+        var dateNewCell = new Date(this.cells[3].innerHTML);
+
+        dayCellValue = dateNewCell.getDate();
+        console.log("date is " + dayCellValue);
+        
+        yearCellValue = dateNewCell.getFullYear();
+        console.log("Year is " + yearCellValue);
+
+        month = dateNewCell.getMonth() + 1
+        console.log("Month is " + month);
+        if(month == 1){
+            monthCellValue = ("January");
+        } else if(month == 2){
+            monthCellValue = ("February");
+        }  else if(month == 3){
+            monthCellValue = ("Mars");
+        }  else if(month == 4){
+            monthCellValue = ("April");
+        }  else if(month == 5){
+            monthCellValue = ("May");
+        }  else if(month == 6){
+            monthCellValue = ("June");
+        }  else if(month == 7){
+            monthCellValue = ("July");
+        }  else if(month == 8){
+            monthCellValue = ("August");
+        }  else if(month == 9){
+            monthCellValue = ("September");
+        }  else if(month == 10){
+            monthCellValue = ("October");
+        }  else if(month == 11){
+            monthCellValue = ("Novermber");
+        }  else if(month == 12){
+            monthCellValue = ("December");
+        } else{
+            console.log("that's not a month :/");
+        }
+
+        document.getElementById("DD").value = dayCellValue;
+        document.getElementById("MM").value = monthCellValue;
+        document.getElementById("YYYY").value = yearCellValue;
+
+
+        
+// Radio button condition
         if( this.cells[5].innerHTML == "Novel"){
             console.log("Novel radio should be selected");
             document.getElementById('Novel').checked = true;
@@ -182,26 +301,34 @@ selectedRowToInput();
 
 function updateHtmlTbleSelectedRow()
 {
-var workTitle = document.getElementById("workTitle").value,
-    authorName = document.getElementById("authorName").value,
-    price = document.getElementById("price").value;
-    pubDate = document.getElementById("pubDate").value;
-    languages = document.getElementById("languages").value;
+    var workTitle = document.getElementById("workTitle").value,
+        authorName = document.getElementById("authorName").value,
+        price = document.getElementById("price").value;
+        // pubDate = document.getElementById("pubDate").value;
+        // New date solution
+        dd = document.getElementById("DD").value;
+        mm = document.getElementById("MM").value;
+        yyyy = document.getElementById("YYYY").value;
 
-if(!checkEmptyInput())
-{
-    table.rows[rIndex].cells[0].innerHTML = workTitle;
-    table.rows[rIndex].cells[1].innerHTML = authorName;
-    table.rows[rIndex].cells[2].innerHTML = price;
-    table.rows[rIndex].cells[3].innerHTML = pubDate;
-    table.rows[rIndex].cells[4].innerHTML = languages;
-    table.rows[rIndex].cells[5].innerHTML = document.querySelector('input[name=genre]:checked').value;
-}
+        newDate = dd + "/" + mm + "/" + yyyy
+        
+        languages = document.getElementById("languages").value;
 
-resetInput()
-document.getElementById("Add").style.display = "block";
-document.getElementById("Update").style.display = "none";
-document.getElementById("Remove").style.display = "none";
+    if(!checkEmptyInput())
+    {
+        table.rows[rIndex].cells[0].innerHTML = workTitle;
+        table.rows[rIndex].cells[1].innerHTML = authorName;
+        table.rows[rIndex].cells[2].innerHTML = price;
+        // table.rows[rIndex].cells[3].innerHTML = pubDate;
+        table.rows[rIndex].cells[3].innerHTML = newDate;
+        table.rows[rIndex].cells[4].innerHTML = languages;
+        table.rows[rIndex].cells[5].innerHTML = document.querySelector('input[name=genre]:checked').value;
+    }
+
+    resetInput()
+    document.getElementById("Add").style.display = "block";
+    document.getElementById("Update").style.display = "none";
+    document.getElementById("Remove").style.display = "none";
 }
 
 function removeSelectedRow()
@@ -220,15 +347,19 @@ document.getElementById("Remove").style.display = "none";
 
 function resetInput()
 {
-// clear input text
-document.getElementById("workTitle").value = "";
-document.getElementById("authorName").value = "";
-document.getElementById("price").value = "";
-document.getElementById("pubDate").value = "";
-document.getElementById("languages").value = "";
-document.querySelector("input[value=Novel]").checked = false;
-document.querySelector("input[value=Essay]").checked = false;
-document.querySelector("input[value=Comic]").checked = false;
+    // clear input text
+    document.getElementById("workTitle").value = "";
+    document.getElementById("authorName").value = "";
+    document.getElementById("price").value = "";
+    // document.getElementById("pubDate").value = "";
+    document.getElementById("languages").value = "";
+    document.querySelector("input[value=Novel]").checked = false;
+    document.querySelector("input[value=Essay]").checked = false;
+    document.querySelector("input[value=Comic]").checked = false;
+
+    document.getElementById("DD").value = "";
+    document.getElementById("MM").value = "";
+    document.getElementById("YYYY").value = "";
 }
 
 
